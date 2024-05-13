@@ -9,7 +9,8 @@
 * CoCEA_renamed.html	: 무협버전 스킬명의 html 파일
 
 ## 미리보기
-[이미지](https://i.ibb.co/7StFy5c/Co-CEA-mini.png)
+<img src="https://github.com/alledaten/Roll20_custom_sheets/assets/44220777/aede5273-f41a-47de-b9d4-de37922170a2" height="400" />
+<img src="https://github.com/alledaten/Roll20_custom_sheets/assets/44220777/56d171db-65bb-4172-a2a9-dbad7b812334" height="400" />
 
 ## 사용방법
 1. 세션 방 메인화면의 [설정]→[게임 설정]페이지로 들어갑니다.
@@ -19,6 +20,3 @@
    2. 무협 스킬명을 원한다면 **CoCEA_renamed.html** 파일의 내용을 복사합니다.
 4. [CSS Styling] 탭을 선택하고 CoCEA.css 파일 내용을 복사-붙여넣기 합니다.
 5. 변경 사항을 저장합니다.
-
-## 이용범위
-* 본 시트는 레이아웃(html/css)및 리소스 변경시 재배포 및 커미션 사용이 가능합니다
