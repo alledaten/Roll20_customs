@@ -3,9 +3,9 @@
 * 시트를 사용하기 위해서는 롤20 프로계정이 필요합니다
 
 ## 파일목록
-* CoCEA.css		: css 파일
-* CoCEA_original.html	: 기본 스킬명의 html 파일
-* CoCEA_renamed.html	: 무협버전 스킬명의 html 파일
+* CoC_EA.css		: css 파일
+* CoC_EA_original.html  : 기본 스킬명의 html 파일
+* CoC_EA_renamed.html   : 무협버전 스킬명의 html 파일
 
 ## 미리보기
 <img src="https://github.com/alledaten/Roll20_custom_sheets/assets/44220777/aede5273-f41a-47de-b9d4-de37922170a2" height="400" />
