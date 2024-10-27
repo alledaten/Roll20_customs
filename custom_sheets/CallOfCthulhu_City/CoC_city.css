@@ -1,179 +1,886 @@
 @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
-@font-face {  font-family: 'GongGothicMedium';  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');  font-weight: normal;  font-style: normal;  }
-@font-face {  font-family: 'JalnanGothic';  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');  font-weight: normal;  font-style: normal;  }
+
+@font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JalnanGothic';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* 초기화 */
-.ui-dialog .charsheet select, .ui-dialog .charsheet textarea, .ui-dialog .charsheet input, .ui-dialog .charsheet .uneditable-input, .ui-dialog .charsheet label, .ui-dialog .charsheet button {all: initial;}
-.ui-dialog .charsheet button[type=roll] {padding: 0;margin: 0;}
+.ui-dialog .charsheet select, .ui-dialog .charsheet textarea, .ui-dialog .charsheet input, .ui-dialog .charsheet .uneditable-input, .ui-dialog .charsheet label, .ui-dialog .charsheet button {
+    all: initial;
+}
+
+.ui-dialog .charsheet button[type=roll] {
+    padding: 0;
+    margin: 0;
+}
 
 /* 공통 */
-:root {--sheet-font-input: 'GongGothicMedium';--sheet-font-nametag: 'JalnanGothic';--sheet-font-normal: 'nanumsquare';--sheet-color-point: #007500;}
-.grid {display: grid;align-items: center;grid-gap: 10px;}
-.flex {display: flex;align-items: center;}
-.ui-dialog .charsheet input {font-family: var(--sheet-font-input);width: 95%;margin: auto;color: black;}
-.ui-dialog .charsheet input.input-title {width: 99%;}
-.ui-dialog .charsheet input:hover {background-color: rgb(255 249 232 / 90%);;}
-input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
-input[type='number'] {-moz-appearance: textfield;}
-.ui-dialog .charsheet button[type=roll] {line-height: 15px;font-size: 20px;}
-.ui-dialog .charsheet button[type=roll]:hover {cursor: pointer;}
-.ui-dialog .charsheet div:not(:has(label)) button[type=roll]:hover {transform: translate(1px, 1px);}
-.ui-dialog .charsheet div:not(:has(label)) button[type=roll]:hover {transform: translate(1px, 1px);}
-.ui-dialog .charsheet label {font-family: var(--sheet-font-normal);font-size: 13px;color: #000000;font-weight: 800;line-height: 25px;}
-.ui-dialog .charsheet label:hover {display: inline-block;cursor: pointer;transform: translate(1px, 1px);color: var(--sheet-color-point);}
-.ui-dialog .charsheet input {color: #000000;text-align: center;}
-.ui-dialog .charsheet input[type=text],.ui-dialog .charsheet input[type=number] {border-bottom: 1px solid #000000;}
-.ui-dialog .charsheet input::placeholder {font-family: "Nanum Gothic", '돋움', serif;color: #939393;font-size: 12px;font-weight: normal;}
-.ui-dialog .charsheet textarea::placeholder {font-size: 12px;}
-.ui-dialog .charsheet input[type=number]:disabled,.ui-dialog .charsheet input[type=number]:disabled {color: #4b4b4b;background-color: rgba(0, 0, 0, 0.1);}
+:root {
+    --sheet-font-input: 'GongGothicMedium';
+    --sheet-font-nametag: 'JalnanGothic';
+    --sheet-font-normal: 'nanumsquare';
+    --sheet-color-point: #007500;
+}
 
-.ui-dialog .charsheet textarea {height: 70px;width: 100%;overflow-wrap: anywhere;font-family: "Nanum Gothic", '돋움', serif;font-size: 13px;border: 1px solid #000000;background-color: rgba(255, 255, 255, 0.9);}
-.ui-dialog .charsheet textarea:hover {background-color: rgb(255 249 232 / 90%);;}
-.ui-dialog .charsheet select {text-align: center;font-size: 13px;border: 1px solid black;}
-button.btn.btn-danger.pictos.repcontrol_del {font-family: 'Pictos';width: 20px;display: inline-block;padding: 4px 10px 4px;text-align: center;text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);vertical-align: middle;background-color: #a80000;border: 1px solid #ccc;border-bottom-color: #bbb;border-radius: 4px;cursor: pointer;}
-.ui-dialog .charsheet hr {border-top: 1px dashed #000000;}
-.ui-dialog .charsheet button.default-roll[type=roll]::before {font-family: 'dicefontd10';content: 'a';color: #000000;font-weight: bold;}
-.ui-dialog .charsheet button.bonus-roll[type=roll]::before {font-family: 'dicefontd10';content: 'A';color: #000000;}
-.ui-dialog .charsheet button[type=roll].big-dice {padding-left: 5px;font-size: 22px;}
-.ui-dialog .charsheet button[type=roll]:hover::before {color: var(--sheet-color-point);}
-.ui-dialog .charsheet input[type=checkbox] {width: 15px !important;}
-.charsheet input[type="checkbox"]::before {border: solid 1px #000000;line-height: 14px;text-align: center;display: inline-block;vertical-align: middle;background: #f6f6f6;position: relative;content: "";width: 14px;height: 14px;font-size: 12px;border-radius: 3px;cursor: pointer;}
-.charsheet input[type="checkbox"]:checked::before {content: "✔";color: var(--sheet-color-point);cursor: pointer;}
-.repcontrol {display: flex;flex-direction: row-reverse;justify-content: space-between;}
-.ui-dialog .charsheet .repcontrol_add,.ui-dialog .charsheet .repcontrol_edit {font-size: smaller;padding: 2px 4px;background-image: none;background-color: rgba(255, 255, 255);border: 1px solid #000000;}
-.section {padding: 10px 30px;}
-.margin-top {margin-top: 10px;}
+.grid {
+    display: grid;
+    align-items: center;
+    grid-gap: 10px;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.ui-dialog .charsheet input {
+    font-family: var(--sheet-font-input);
+    width: 95%;
+    margin: auto;
+    color: black;
+}
+
+.ui-dialog .charsheet input.input-title {
+    width: 99%;
+}
+
+.ui-dialog .charsheet input:hover {
+    background-color: rgb(255 249 232 / 90%);;
+}
+
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+.ui-dialog .charsheet button[type=roll] {
+    line-height: 15px;
+    font-size: 20px;
+}
+
+.ui-dialog .charsheet button[type=roll]:hover {
+    cursor: pointer;
+}
+
+.ui-dialog .charsheet div:not(:has(label)) button[type=roll]:hover {
+    transform: translate(1px, 1px);
+}
+
+.ui-dialog .charsheet div:not(:has(label)) button[type=roll]:hover {
+    transform: translate(1px, 1px);
+}
+
+.ui-dialog .charsheet label {
+    font-family: var(--sheet-font-normal);
+    font-size: 13px;
+    color: #000000;
+    font-weight: 800;
+    line-height: 25px;
+}
+
+.ui-dialog .charsheet label:hover {
+    display: inline-block;
+    cursor: pointer;
+    transform: translate(1px, 1px);
+    /*color: var(--sheet-color-point);*/
+}
+
+.ui-dialog .charsheet input {
+    color: #000000;
+    text-align: center;
+}
+
+.ui-dialog .charsheet input[type=text], .ui-dialog .charsheet input[type=number] {
+    border-bottom: 1px solid #000000;
+}
+
+.ui-dialog .charsheet input::placeholder {
+    font-family: "Nanum Gothic", '돋움', serif;
+    color: #939393;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.ui-dialog .charsheet textarea::placeholder {
+    font-size: 12px;
+}
+
+.ui-dialog .charsheet input[type=number]:disabled, .ui-dialog .charsheet input[type=number]:disabled {
+    color: #4b4b4b;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.ui-dialog .charsheet textarea {
+    height: 70px;
+    width: 100%;
+    overflow-wrap: anywhere;
+    font-family: "Nanum Gothic", '돋움', serif;
+    font-size: 13px;
+    border: 1px solid #000000;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.ui-dialog .charsheet textarea:hover {
+    background-color: rgb(255 249 232 / 90%);;
+}
+
+.ui-dialog .charsheet select {
+    text-align: center;
+    font-size: 13px;
+    border: 1px solid black;
+}
+
+button.btn.btn-danger.pictos.repcontrol_del {
+    font-family: 'Pictos';
+    width: 20px;
+    display: inline-block;
+    padding: 4px 10px 4px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+    background-color: #a80000;
+    border: 1px solid #ccc;
+    border-bottom-color: #bbb;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.ui-dialog .charsheet hr {
+    border-top: 1px dashed #000000;
+}
+
+.ui-dialog .charsheet button.default-roll[type=roll]::before {
+    font-family: 'dicefontd10';
+    content: 'a';
+    color: #007343;
+    font-weight: bold;
+}
+
+.ui-dialog .charsheet button.bonus-roll[type=roll]::before {
+    font-family: 'dicefontd10';
+    content: 'a';
+    color: #4e26ff;
+    font-weight: bold;
+}
+
+.ui-dialog .charsheet button[type=roll].big-dice {
+    padding-left: 5px;
+    font-size: 22px;
+}
+
+.ui-dialog .charsheet button[type=roll]:hover::before {
+    /*color: var(--sheet-color-point);*/
+}
+
+.ui-dialog .charsheet input[type=checkbox] {
+    width: 15px !important;
+}
+
+.charsheet input[type="checkbox"]::before {
+    border: solid 1px #000000;
+    line-height: 14px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    background: #f6f6f6;
+    position: relative;
+    content: "";
+    width: 14px;
+    height: 14px;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.charsheet input[type="checkbox"]:checked::before {
+    content: "✔";
+    color: var(--sheet-color-point);
+    cursor: pointer;
+}
+
+.repcontrol {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.ui-dialog .charsheet .repcontrol_add, .ui-dialog .charsheet .repcontrol_edit {
+    font-size: smaller;
+    padding: 2px 4px;
+    background-image: none;
+    background-color: rgba(255, 255, 255);
+    border: 1px solid #000000;
+}
+
+.section {
+    padding: 10px 30px;
+}
+
+.margin-top {
+    margin-top: 10px;
+}
 
 /* 전체 */
-.coc7-city-sheet {background-color: rgb(255, 255, 255);background-image: url("https://i.ibb.co/ssHgm7j/city-header.png"), url("https://i.ibb.co/Xy5NGRw/city-middle.png");background-position: top, bottom;background-repeat: no-repeat;border: 2px solid black;color: black;width: 840px;font-family: var(--sheet-font-normal);}
-div.title-wrap {background: repeating-linear-gradient(-45deg, #000000, #000000 12px, #ffe002 12px, #ffe002 24px);height: 30px;padding-top: 8px;margin-bottom: 10px;border-top: 1px solid #000000;border-bottom: 1px solid #000000;}
-h1.title-text {font-size: 20px;font-family: var(--sheet-font-input);font-weight: normal;height: 17px;line-height: 20px;background-color: #ffe002;text-align: center;padding: 2px;color: #000000;}
+.coc7-city-sheet {
+    background-color: rgb(255, 255, 255);
+    background-image: url("https://i.ibb.co/ssHgm7j/city-header.png"), url("https://i.ibb.co/Xy5NGRw/city-middle.png");
+    background-position: top, bottom;
+    background-repeat: no-repeat;
+    border: 2px solid black;
+    color: black;
+    width: 840px;
+    font-family: var(--sheet-font-normal);
+}
+
+div.title-wrap {
+    background: repeating-linear-gradient(-45deg, #000000, #000000 12px, #ffe002 12px, #ffe002 24px);
+    height: 30px;
+    padding-top: 8px;
+    margin-bottom: 10px;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+h1.title-text {
+    font-size: 20px;
+    font-family: var(--sheet-font-input);
+    font-weight: normal;
+    height: 17px;
+    line-height: 20px;
+    background-color: #ffe002;
+    text-align: center;
+    padding: 2px;
+    color: #000000;
+}
 
 /* 인포 */
-.title-section {height: 120px;}
-.info-section {padding-bottom: 10px;}
-.info-portrait {text-align: center;height: 200px;width: 200px;margin: 0 auto;background: rgba(255, 255, 255, 0.8);border: 3px solid black;}
-.info-portrait img {width: 200px;}
-.info-name {text-align: center;}
-.info-name input[type="text"] {line-height: 30px;text-align: center;font-size: 20px;width: 100%;}
-.info-data {grid-template-columns: 1.5fr 2fr 1fr 2.5fr 1fr 1fr repeat(3, 1fr 2fr);justify-items: center;}
-.status-points {grid-template-columns: 1fr 1fr 2fr;border-top: 1px dashed #000000;padding-top: 10px;}
-.status-points div {grid-template-columns: 1fr 2fr 5px 2fr;justify-items: center;}
-.status-points div:last-child {grid-template-columns: 1fr 2fr 5px 2fr 5px 2fr 20px 20px 1fr;grid-gap: 0;}
-.sanity-points {grid-template-columns: 1fr 1fr 2fr;}
-.sanity-points div.grid {grid-template-columns: 1fr 2fr;}
-.sanity-points div.flex {justify-content: flex-end;gap: 20px;}
+.title-section {
+    height: 120px;
+}
+
+.info-section {
+    padding-bottom: 10px;
+}
+
+.info-portrait {
+    text-align: center;
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.8);
+    border: 3px solid black;
+}
+
+.info-portrait img {
+    width: 200px;
+}
+
+.info-name {
+    text-align: center;
+}
+
+.info-name input[type="text"] {
+    line-height: 30px;
+    text-align: center;
+    font-size: 20px;
+    width: 100%;
+}
+
+.info-data {
+    grid-template-columns: 1.5fr 2fr 1fr 2.5fr 1fr 1fr repeat(3, 1fr 2fr);
+    justify-items: center;
+}
+
+.status-points {
+    grid-template-columns: 1fr 1fr 2fr;
+    border-top: 1px dashed #000000;
+    padding-top: 10px;
+}
+
+.status-points div {
+    grid-template-columns: 1fr 2fr 5px 2fr;
+    justify-items: center;
+}
+
+.status-points div:last-child {
+    grid-template-columns: 1fr 2fr 5px 2fr 5px 2fr 20px 20px 1fr;
+    grid-gap: 0;
+}
+
+.sanity-points {
+    grid-template-columns: 1fr 1fr 2fr;
+}
+
+.sanity-points div.grid {
+    grid-template-columns: 1fr 2fr;
+}
+
+.sanity-points div.flex {
+    justify-content: flex-end;
+    gap: 20px;
+}
 
 /* 특성 */
-.status-characteristics {gap: 10px;justify-content: space-between;}
-.status-characteristics div {text-align: center;height: 80px;width: 60px;}
-.status-characteristics div strong {font-size: 14px;}
-.status-characteristics div input[type=number] {height: 40px;font-size: 25px;width: 50px !important;}
-.dice-section .inner-wrap {border-top: 1px dashed #000000;justify-content: space-between;padding: 5px 0;}
-.dice-section .inner-wrap input.dice-roll-input {width: 100px;}
+.status-characteristics {
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.status-characteristics div {
+    text-align: center;
+    height: 80px;
+    width: 60px;
+}
+
+.status-characteristics div strong {
+    font-size: 14px;
+}
+
+.status-characteristics div input[type=number] {
+    height: 40px;
+    font-size: 25px;
+    width: 50px !important;
+}
+
+.dice-section .inner-wrap {
+    border-top: 1px dashed #000000;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.dice-section .inner-wrap input.dice-roll-input {
+    width: 100px;
+}
 
 /* 기능 */
-.skill-container {grid-template-columns: 1fr 1fr 1fr;grid-gap: 20px;padding: 20px;align-items: start;}
-.skill-grid {display: flex;grid-gap: 5px;flex-direction: column;}
-.ui-dialog .charsheet .skill-section p {display: inline-block;width: 14px;height: 10px;}
-.ui-dialog .charsheet .skill-section span.skill-label {width: 120px;display: inline-block;font-weight: 600;}
-.ui-dialog .charsheet .skill-section input[type=text].skill-value {width: 25px;height: 25px;text-align: center;font-size: 13px;}
-.ui-dialog .charsheet .skill-section input[type=text].skill-label-input {text-align: left;font-family: var(--sheet-font-normal);height: 25px;font-size: 13px;font-weight: 600;}
-.skill-section .repcontainer {display: grid;grid-gap: 5px;}
+.skill-container {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    padding: 20px;
+    align-items: start;
+}
+
+.skill-grid {
+    display: flex;
+    grid-gap: 5px;
+    flex-direction: column;
+}
+
+.ui-dialog .charsheet .skill-section p {
+    display: inline-block;
+    width: 14px;
+    height: 10px;
+}
+
+.ui-dialog .charsheet .skill-section span.skill-label {
+    width: 120px;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.ui-dialog .charsheet .skill-section input[type=text].skill-value {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.ui-dialog .charsheet .skill-section input[type=text].skill-label-input {
+    text-align: left;
+    font-family: var(--sheet-font-normal);
+    height: 25px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.skill-section .repcontainer {
+    display: grid;
+    grid-gap: 5px;
+}
 
 /* 전투 섹션 */
-.fight-section {height: auto;}
-.fight-section .fight-info-section {grid-template-columns: 1fr 1fr;}
-.fight-section .fight-info-section .grid-item {justify-content: space-around;align-items: center;}
-.fight-section .fight-info-section .grid-item select {width: 70px;}
-.fight-section .fight-info-section .grid-item input {width: 70px;font-size: 13px;}
-.fight-section .fight-info-section div:first-child {grid-gap: 20px;}
-.fight-section .fight-info-section div:last-child {justify-content: flex-end;gap: 10px;}
-.fight-section .fight-roll-section {border-top: 1px dashed #000000;}
-.fight-section .fight-roll-section :where(.fight-header, .fight-row) {grid-template-columns: 4fr 40px 2.5fr 2.5fr 1fr 1.2fr 1fr 1fr;}
-.fight-section .fight-roll-section .fight-header {text-align: center;font-weight: bold;font-size: 14px;background: rgba(0, 0, 0, 0.1);height: 20px;padding: 3px;}
-.fight-section .fight-roll-section .fight-row {padding: 5px 0;}
-.fight-section .fight-roll-section input {text-align: center;font-size: 13px;height: 20px;width: 95%;}
+.fight-section {
+    height: auto;
+}
+
+.fight-section .fight-info-section {
+    grid-template-columns: 1fr 1fr;
+}
+
+.fight-section .fight-info-section .grid-item {
+    justify-content: space-around;
+    align-items: center;
+}
+
+.fight-section .fight-info-section .grid-item select {
+    width: 70px;
+}
+
+.fight-section .fight-info-section .grid-item input {
+    width: 70px;
+    font-size: 13px;
+}
+
+.fight-section .fight-info-section div:first-child {
+    grid-gap: 20px;
+}
+
+.fight-section .fight-info-section div:last-child {
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.fight-section .fight-roll-section {
+    border-top: 1px dashed #000000;
+}
+
+.fight-section .fight-roll-section :where(.fight-header, .fight-row) {
+    grid-template-columns: 4fr 40px 2.5fr 2.5fr 1fr 1.2fr 1fr 1fr;
+}
+
+.fight-section .fight-roll-section .fight-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.1);
+    height: 20px;
+    padding: 3px;
+}
+
+.fight-section .fight-roll-section .fight-row {
+    padding: 5px 0;
+}
+
+.fight-section .fight-roll-section input {
+    text-align: center;
+    font-size: 13px;
+    height: 20px;
+    width: 95%;
+}
+
 .fight-section .fight-roll-section .fight-dam select,
-.fight-section .fight-roll-section .fight-dam input {width: 45%;}
-.fight-section .fight-roll-section select {font-size: 13px;display: inline-block;height: 20px;}
-.fight-section .fight-roll-section .fight-row .fight-dic {font-size: 15px;}
-.fight-section .fight-roll-section .fight-row .fight-func select {width: 95%;}
-.additional-section .skill-label-input {font-size: 12px;}
-.charsheet .additional-section .toggle-button-section input[type=checkbox]:checked::before {content: "✔";}
-.additional-section {margin-top: 10px;border-top: 3px double #000000;border-bottom: 3px solid #000000;}
-.additional-section .toggle-button-section {text-align: right;}
-.ui-dialog .charsheet .additional-section .toggle-button-section label {margin-left: 10px;font-size: 12px;}
-.ui-dialog .charsheet .additional-section .skill-label-input {height: 23px;text-align: center;}
-#spell-section, #simple-armor-section, #armor-section {display: none;}
-.ui-dialog .charsheet input.check-toggle-spell[value="1"] ~ #spell-section {display: block;}
-.ui-dialog .charsheet input.check-toggle-simple-armor[value="1"] ~ #simple-armor-section {display: block;}
-.ui-dialog .charsheet input.check-toggle-armor[value="1"] ~ #armor-section {display: block;text-align: center;}
-.toggle-section {margin-top: 10px;padding-bottom: 10px;}
-#spell-section input[type=text] {padding: 2px;text-align: center;}
-#spell-section div.grid-container {grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 50px;justify-items: center;}
-#spell-section .grid-item {margin: 3px;}
-#simple-armor-section .grid-container {grid-template-columns: 2fr 1fr 20px 2fr 1fr 20px;grid-gap: 5px;}
-#armor-section .grid-container {grid-template-columns: 1fr 1fr 1fr;margin-bottom: 5px;}
-#armor-section .grid-container .grid-item {grid-template-columns: 3fr 5fr 1.5fr 20px;grid-gap: 5px;align-items: end;}
+.fight-section .fight-roll-section .fight-dam input {
+    width: 45%;
+}
+
+.fight-section .fight-roll-section select {
+    font-size: 13px;
+    display: inline-block;
+    height: 20px;
+}
+
+.fight-section .fight-roll-section .fight-row .fight-dic {
+    font-size: 15px;
+}
+
+.fight-section .fight-roll-section .fight-row .fight-func select {
+    width: 95%;
+}
+
+.additional-section .skill-label-input {
+    font-size: 12px;
+}
+
+.charsheet .additional-section .toggle-button-section input[type=checkbox]:checked::before {
+    content: "✔";
+}
+
+.additional-section {
+    margin-top: 10px;
+    border-top: 3px double #000000;
+    border-bottom: 3px solid #000000;
+}
+
+.additional-section .toggle-button-section {
+    text-align: right;
+}
+
+.ui-dialog .charsheet .additional-section .toggle-button-section label {
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.ui-dialog .charsheet .additional-section .skill-label-input {
+    height: 23px;
+    text-align: center;
+}
+
+#spell-section, #simple-armor-section, #armor-section {
+    display: none;
+}
+
+.ui-dialog .charsheet input.check-toggle-spell[value="1"] ~ #spell-section {
+    display: block;
+}
+
+.ui-dialog .charsheet input.check-toggle-simple-armor[value="1"] ~ #simple-armor-section {
+    display: block;
+}
+
+.ui-dialog .charsheet input.check-toggle-armor[value="1"] ~ #armor-section {
+    display: block;
+    text-align: center;
+}
+
+.toggle-section {
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+#spell-section input[type=text] {
+    padding: 2px;
+    text-align: center;
+}
+
+#spell-section div.grid-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 50px;
+    justify-items: center;
+}
+
+#spell-section .grid-item {
+    margin: 3px;
+}
+
+#simple-armor-section .grid-container {
+    grid-template-columns: 2fr 1fr 20px 2fr 1fr 20px;
+    grid-gap: 5px;
+}
+
+#armor-section .grid-container {
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 5px;
+}
+
+#armor-section .grid-container .grid-item {
+    grid-template-columns: 3fr 5fr 1.5fr 20px;
+    grid-gap: 5px;
+    align-items: end;
+}
 
 /* 백스토리 */
-.background-section {min-height: 900px;height: auto;}
-.back-pack-section h4 {margin-bottom: 5px;font-weight: 900;text-align: center;}
-.back-story-section {border-top: 1px dashed #000000;}
-.back-pack-section,.back-story-section {grid-template-columns: 1fr 1fr;grid-gap: 20px;padding: 10px;justify-items: center;}
-.ui-dialog .charsheet .backpack-box {display: block;width: 95%;height: 70px !important;}
-.back-pack-section .grid-container {width: 95%;}
-.back-pack-section .grid-container:first-child .grid-item {justify-content: space-evenly;}
-.back-pack-section .grid-container:first-child .grid-item textarea {width:46%; height:175px;}
-.back-pack-section .grid-container:last-child .grid-item {grid-template-rows: 1fr 1fr 4fr;grid-template-columns: 1fr 2fr;}
-.back-pack-section .grid-container:last-child .grid-item strong {display: inline-block;}
-.ui-dialog .charsheet .background-section textarea {display: block;padding: 5px;font-size: 12px;width: 330px;height: 80px;}
-.backstory-label {display: block !important;background: rgba(255, 255, 255);line-height: 30px;font-weight: 800;}
-.back-pack-section .grid-container:last-child .grid-item div:last-child {grid-column: 1/3;}
-.back-story-section .grid-container {flex-direction: column;gap: 10px;}
-.back-story-section .grid-container strong {display: block;}
-.background-section .toggle-button-section {text-align: right;border-bottom: 1px dashed;padding-bottom: 2px;margin-bottom: 5px;}
-.ui-dialog .charsheet input[type=radio] {width: 15px !important;}
-.ui-dialog .charsheet input[type=radio]::before {border: solid 1px #000000;line-height: 14px;text-align: center;display: inline-block;vertical-align: middle;background: #f6f6f6;position: relative;content: "";width: 14px;height: 14px;font-size: 12px;border-radius: 3px;cursor: pointer;}
-.ui-dialog .charsheet input[type=radio]:checked::before {content: "✔";color: var(--sheet-color-point);cursor: pointer;}
-#downtime-section,#companions-section,#vehicle-section {min-height: 933px;height: auto;}
-#backstory-section,#downtime-section,#companions-section,#vehicle-section {display: none;}
+.background-section {
+    min-height: 900px;
+    height: auto;
+}
+
+.back-pack-section h4 {
+    margin-bottom: 5px;
+    font-weight: 900;
+    text-align: center;
+}
+
+.back-story-section {
+    border-top: 1px dashed #000000;
+}
+
+.back-pack-section, .back-story-section {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    padding: 10px;
+    justify-items: center;
+}
+
+.ui-dialog .charsheet .backpack-box {
+    display: block;
+    width: 95%;
+    height: 70px !important;
+}
+
+.back-pack-section .grid-container {
+    width: 95%;
+}
+
+.back-pack-section .grid-container:first-child .grid-item {
+    justify-content: space-evenly;
+}
+
+.back-pack-section .grid-container:first-child .grid-item textarea {
+    width: 46%;
+    height: 175px;
+}
+
+.back-pack-section .grid-container:last-child .grid-item {
+    grid-template-rows: 1fr 1fr 4fr;
+    grid-template-columns: 1fr 2fr;
+}
+
+.back-pack-section .grid-container:last-child .grid-item strong {
+    display: inline-block;
+}
+
+.ui-dialog .charsheet .background-section textarea {
+    display: block;
+    padding: 5px;
+    font-size: 12px;
+    width: 330px;
+    height: 80px;
+}
+
+.backstory-label {
+    display: block !important;
+    background: rgba(255, 255, 255);
+    line-height: 30px;
+    font-weight: 800;
+}
+
+.back-pack-section .grid-container:last-child .grid-item div:last-child {
+    grid-column: 1/3;
+}
+
+.back-story-section .grid-container {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.back-story-section .grid-container strong {
+    display: block;
+}
+
+.background-section .toggle-button-section {
+    text-align: right;
+    border-bottom: 1px dashed;
+    padding-bottom: 2px;
+    margin-bottom: 5px;
+}
+
+.ui-dialog .charsheet input[type=radio] {
+    width: 15px !important;
+}
+
+.ui-dialog .charsheet input[type=radio]::before {
+    border: solid 1px #000000;
+    line-height: 14px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    background: #f6f6f6;
+    position: relative;
+    content: "";
+    width: 14px;
+    height: 14px;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.ui-dialog .charsheet input[type=radio]:checked::before {
+    content: "✔";
+    color: var(--sheet-color-point);
+    cursor: pointer;
+}
+
+#downtime-section, #companions-section, #vehicle-section {
+    min-height: 933px;
+    height: auto;
+}
+
+#backstory-section, #downtime-section, #companions-section, #vehicle-section {
+    display: none;
+}
+
 .ui-dialog .charsheet input.check-toggle-backstory[value="backstory"] ~ #backstory-section,
 .ui-dialog .charsheet input.check-toggle-backstory[value="downtime"] ~ #downtime-section,
 .ui-dialog .charsheet input.check-toggle-backstory[value="companions"] ~ #companions-section,
-.ui-dialog .charsheet input.check-toggle-backstory[value="vehicles"] ~ #vehicle-section {display: block;}
-#downtime-section .grid-container {grid-template-columns: 5fr 3fr;}
-#downtime-section .grid-container textarea {width: 95%;}
-#companions-section .minion-name,#vehicle-section .vehicle-name {margin-bottom: 5px;}
-#downtime-section .senario-name input,#companions-section .minion-name input,#vehicle-section .vehicle-name input {border-bottom: 2px solid #000000;height: 25px;}
-#companions-section .minion-stat {grid-template-columns: repeat(5, 1fr 2fr 30px);margin-bottom: 3px;justify-items: center;grid-row-gap: 0;}
-#companions-section .minion-stat .grid-item,#companions-section .minion-stat-3 .grid-item {display: grid;grid-column: -3 / -1;grid-template-columns: 1fr 5px 1fr;}
-#companions-section .minion-skill-container {grid-template-columns: repeat(3, 1fr);margin-top: 15px;justify-items: end;}
-#companions-section .minion-weapon {grid-template-columns: 100px 30px 100px 30px;grid-gap: 5px;margin-bottom: 3px;}
-#companions-section .minion-skill {grid-template-columns: 130px 30px 30px;grid-gap: 5px;margin-bottom: 3px;}
-#companions-section textarea {margin-top: 10px;display: block;width: 98%;height: 50px;}
-#vehicle-section .vehicle-stat {grid-template-columns: 1fr 2fr 1fr 1fr 5px 1fr 1fr 2fr 1fr 2fr;grid-gap: 5px;margin-bottom: 5px;align-items: center;justify-items: center;}
-#vehicle-section .vehicle-grid-container {grid-template-columns: 1fr 2fr;}
-#vehicle-section .vehicle-grid-container .vehicle-skill {grid-template-columns: 4fr 1fr 30px;margin-bottom: 3px;justify-items: center;gap: 3px;}
-#vehicle-section .vehicle-grid-container .vehicle-skill:nth-child(3) {grid-template-columns: 3fr 1fr 1fr 30px;margin-inside: 5px;justify-items: center;}
-#vehicle-section .vehicle-grid-container .vehicle-skill:last-child {grid-template-columns: 5fr 30px;margin-bottom: 3px;}
-#vehicle-section .vehicle-grid-container .vehicle-skill:last-child strong {grid-template-columns: 5fr 30px;margin-bottom: 3px;text-align: right;width: 100%;}
-#vehicle-section .vehicle-grid-container textarea {display: block;width: 98%;overflow-wrap: anywhere;}
-.footer {height: 100px;}
-.footer p {text-align: center;font-family: sans-serif;font-size: 11px;line-height: 60px;}
+.ui-dialog .charsheet input.check-toggle-backstory[value="vehicles"] ~ #vehicle-section {
+    display: block;
+}
+
+#downtime-section .grid-container {
+    grid-template-columns: 5fr 3fr;
+}
+
+#downtime-section .grid-container textarea {
+    width: 95%;
+}
+
+#companions-section .minion-name, #vehicle-section .vehicle-name {
+    margin-bottom: 5px;
+}
+
+#downtime-section .senario-name input, #companions-section .minion-name input, #vehicle-section .vehicle-name input {
+    border-bottom: 2px solid #000000;
+    height: 25px;
+}
+
+#companions-section .minion-stat {
+    grid-template-columns: repeat(5, 1fr 2fr 30px);
+    margin-bottom: 3px;
+    justify-items: center;
+    grid-row-gap: 0;
+}
+
+#companions-section .minion-stat .grid-item, #companions-section .minion-stat-3 .grid-item {
+    display: grid;
+    grid-column: -3 / -1;
+    grid-template-columns: 1fr 5px 1fr;
+}
+
+#companions-section .minion-skill-container {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 15px;
+    justify-items: end;
+}
+
+#companions-section .minion-weapon {
+    grid-template-columns: 100px 30px 100px 30px;
+    grid-gap: 5px;
+    margin-bottom: 3px;
+}
+
+#companions-section .minion-skill {
+    grid-template-columns: 130px 30px 30px;
+    grid-gap: 5px;
+    margin-bottom: 3px;
+}
+
+#companions-section textarea {
+    margin-top: 10px;
+    display: block;
+    width: 98%;
+    height: 50px;
+}
+
+#vehicle-section .vehicle-stat {
+    grid-template-columns: 1fr 2fr 1fr 1fr 5px 1fr 1fr 2fr 1fr 2fr;
+    grid-gap: 5px;
+    margin-bottom: 5px;
+    align-items: center;
+    justify-items: center;
+}
+
+#vehicle-section .vehicle-grid-container {
+    grid-template-columns: 1fr 2fr;
+}
+
+#vehicle-section .vehicle-grid-container .vehicle-skill {
+    grid-template-columns: 4fr 1fr 30px;
+    margin-bottom: 3px;
+    justify-items: center;
+    gap: 3px;
+}
+
+#vehicle-section .vehicle-grid-container .vehicle-skill:nth-child(3) {
+    grid-template-columns: 3fr 1fr 1fr 30px;
+    margin-inside: 5px;
+    justify-items: center;
+}
+
+#vehicle-section .vehicle-grid-container .vehicle-skill:last-child {
+    grid-template-columns: 5fr 30px;
+    margin-bottom: 3px;
+}
+
+#vehicle-section .vehicle-grid-container .vehicle-skill:last-child strong {
+    grid-template-columns: 5fr 30px;
+    margin-bottom: 3px;
+    text-align: right;
+    width: 100%;
+}
+
+#vehicle-section .vehicle-grid-container textarea {
+    display: block;
+    width: 98%;
+    overflow-wrap: anywhere;
+}
+
+.footer {
+    height: 100px;
+}
+
+.footer p {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 11px;
+    line-height: 60px;
+}
 
 /* ROLL TEMPLATES */
-.sheet-rolltemplate-coc-bonus table, .sheet-rolltemplate-coc-default table, .sheet-rolltemplate-coc-bomadness-summ table, .sheet-rolltemplate-coc-bomadness-rt table, .sheet-rolltemplate-coc-dice-roll table, .sheet-rolltemplate-coc-body-hit-loc table, .sheet-rolltemplate-coc-attack table, .sheet-rolltemplate-coc-attack-bonus table, .sheet-rolltemplate-coc-spell-roll table, .sheet-rolltemplate-coc-defence-simple table, .sheet-rolltemplate-coc-minionattack table, .sheet-rolltemplate-coc-vehicleattack table {width: 100%;border: 1px solid black;color: black;background: #FFFFFF;}
-.sheet-rolltemplate-coc-bonus caption, .sheet-rolltemplate-coc-default caption, .sheet-rolltemplate-coc-bomadness-summ caption, .sheet-rolltemplate-coc-bomadness-rt caption, .sheet-rolltemplate-coc-dice-roll caption, .sheet-rolltemplate-coc-body-hit-loc caption, .sheet-rolltemplate-coc-attack caption, .sheet-rolltemplate-coc-attack-bonus caption, .sheet-rolltemplate-coc-spell-roll caption, .sheet-rolltemplate-coc-defence-simple caption, .sheet-rolltemplate-coc-minionattack caption, .sheet-rolltemplate-coc-vehicleattack caption {text-align: center;background: black;color: white;font-weight: bold;padding: 2px;border: 1px solid black;line-height: 1.6em;}
-.sheet-rolltemplate-coc-bonus td, .sheet-rolltemplate-coc-default td, .sheet-rolltemplate-coc-bomadness-summ td, .sheet-rolltemplate-coc-bomadness-rt td, .sheet-rolltemplate-coc-dice-roll td, .sheet-rolltemplate-coc-attack td, .sheet-rolltemplate-coc-attack-bonus td, .sheet-rolltemplate-coc-defence-simple td, .sheet-rolltemplate-coc-minionattack td, .sheet-rolltemplate-coc-vehicleattack td {padding: 2px;border-bottom: 1px solid black;}
-.sheet-rolltemplate-coc-body-hit-loc td, .sheet-rolltemplate-coc-spell-roll td {padding: 2px;border-bottom: 1px solid black;text-align: center;}
-.sheet-rolltemplate-coc-bonus td.sheet-template_label, .sheet-rolltemplate-coc-default td.sheet-template_label, .sheet-rolltemplate-coc-bomadness-summ td.sheet-template_label, .sheet-rolltemplate-coc-bomadness-rt td.sheet-template_label, .sheet-rolltemplate-coc-dice-roll td.sheet-template_label, .sheet-rolltemplate-coc-attack td.sheet-template_label, .sheet-rolltemplate-coc-attack-bonus td.sheet-template_label, .sheet-rolltemplate-coc-defence-simple td.sheet-template_label, .sheet-rolltemplate-coc-minionattack td.sheet-template_label, .sheet-rolltemplate-coc-vehicleattack td.sheet-template_label {font-weight: bold;}
-.sheet-rolltemplate-coc-body-hit-loc td.sheet-template_label {font-weight: Bold;text-align: center;}
-.sheet-rolltemplate-coc-spell-roll td.sheet-template_label {font-weight: Bold;text-align: center;width: 20%;}
-.sheet-rolltemplate-coc-bonus td.sheet-template_value, .sheet-rolltemplate-coc-default td.sheet-template_value, .sheet-rolltemplate-coc-dice-roll td.sheet-template_value, .sheet-rolltemplate-coc-body-hit-loc td.sheet-template_value, .sheet-rolltemplate-coc-attack td.sheet-template_value, .sheet-rolltemplate-coc-attack-bonus td.sheet-template_value, .sheet-rolltemplate-coc-spell-roll td.sheet-template_value, .sheet-rolltemplate-coc-bomadness-rt td.sheet-template_value, .sheet-rolltemplate-coc-bomadness-summ td.sheet-template_value, .sheet-rolltemplate-coc-defence-simple td.sheet-template_value, .sheet-rolltemplate-coc-minionattack td.sheet-template_value, .sheet-rolltemplate-coc-vehicleattack td.sheet-template_value {text-align: center;}
-.sheet-rolltemplate-coc-bonus .inlinerollresult, .sheet-rolltemplate-coc-default .inlinerollresult, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult, .sheet-rolltemplate-coc-dice-roll .inlinerollresult, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult, .sheet-rolltemplate-coc-attack .inlinerollresult, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult, .sheet-rolltemplate-coc-spell-roll .inlinerollresult, .sheet-rolltemplate-coc-defence-simple .inlinerollresult, .sheet-rolltemplate-coc-minionattack .inlinerollresult, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult {display: inline-block;min-width: 1.5em;text-align: center;border: 2px solid black;background: #BEBEBE;}
-.sheet-rolltemplate-coc-bonus .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-default .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-attack .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-minionattack .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.fullcrit {border: 2px solid black;background: #BEBEBE;}
-.sheet-rolltemplate-coc-bonus .inlinerollresult.fullfail, .sheet-rolltemplate-coc-default .inlinerollresult.fullfail, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.fullfail, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.fullfail, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.fullfail, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.fullfail, .sheet-rolltemplate-coc-attack .inlinerollresult.fullfail, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.fullfail, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.fullfail, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.fullfail, .sheet-rolltemplate-coc-minionattack .inlinerollresult.fullfail, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.fullfail {border: 2px solid black;background: #BEBEBE;}
-.sheet-rolltemplate-coc-bonus .inlinerollresult.importantroll, .sheet-rolltemplate-coc-default .inlinerollresult.importantroll, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.importantroll, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.importantroll, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.importantroll, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.importantroll, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.importantroll, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.importantroll, .sheet-rolltemplate-coc-minionattack .inlinerollresult.importantroll, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.importantroll {border: 2px solid black;background: #BEBEBE;text-align: center;}
-.sheet-rolltemplate-coc-spell-roll td.sheet-template_spell_description {text-align: justify;padding: 5px;}
+.sheet-rolltemplate-coc-bonus table, .sheet-rolltemplate-coc-default table, .sheet-rolltemplate-coc-bomadness-summ table, .sheet-rolltemplate-coc-bomadness-rt table, .sheet-rolltemplate-coc-dice-roll table, .sheet-rolltemplate-coc-body-hit-loc table, .sheet-rolltemplate-coc-attack table, .sheet-rolltemplate-coc-attack-bonus table, .sheet-rolltemplate-coc-spell-roll table, .sheet-rolltemplate-coc-defence-simple table, .sheet-rolltemplate-coc-minionattack table, .sheet-rolltemplate-coc-vehicleattack table {
+    width: 100%;
+    border: 1px solid black;
+    color: black;
+    background: #FFFFFF;
+}
+
+.sheet-rolltemplate-coc-bonus caption, .sheet-rolltemplate-coc-default caption, .sheet-rolltemplate-coc-bomadness-summ caption, .sheet-rolltemplate-coc-bomadness-rt caption, .sheet-rolltemplate-coc-dice-roll caption, .sheet-rolltemplate-coc-body-hit-loc caption, .sheet-rolltemplate-coc-attack caption, .sheet-rolltemplate-coc-attack-bonus caption, .sheet-rolltemplate-coc-spell-roll caption, .sheet-rolltemplate-coc-defence-simple caption, .sheet-rolltemplate-coc-minionattack caption, .sheet-rolltemplate-coc-vehicleattack caption {
+    text-align: center;
+    background: black;
+    color: white;
+    font-weight: bold;
+    padding: 2px;
+    border: 1px solid black;
+    line-height: 1.6em;
+}
+
+.sheet-rolltemplate-coc-bonus td, .sheet-rolltemplate-coc-default td, .sheet-rolltemplate-coc-bomadness-summ td, .sheet-rolltemplate-coc-bomadness-rt td, .sheet-rolltemplate-coc-dice-roll td, .sheet-rolltemplate-coc-attack td, .sheet-rolltemplate-coc-attack-bonus td, .sheet-rolltemplate-coc-defence-simple td, .sheet-rolltemplate-coc-minionattack td, .sheet-rolltemplate-coc-vehicleattack td {
+    padding: 2px;
+    border-bottom: 1px solid black;
+}
+
+.sheet-rolltemplate-coc-body-hit-loc td, .sheet-rolltemplate-coc-spell-roll td {
+    padding: 2px;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.sheet-rolltemplate-coc-bonus td.sheet-template_label, .sheet-rolltemplate-coc-default td.sheet-template_label, .sheet-rolltemplate-coc-bomadness-summ td.sheet-template_label, .sheet-rolltemplate-coc-bomadness-rt td.sheet-template_label, .sheet-rolltemplate-coc-dice-roll td.sheet-template_label, .sheet-rolltemplate-coc-attack td.sheet-template_label, .sheet-rolltemplate-coc-attack-bonus td.sheet-template_label, .sheet-rolltemplate-coc-defence-simple td.sheet-template_label, .sheet-rolltemplate-coc-minionattack td.sheet-template_label, .sheet-rolltemplate-coc-vehicleattack td.sheet-template_label {
+    font-weight: bold;
+}
+
+.sheet-rolltemplate-coc-body-hit-loc td.sheet-template_label {
+    font-weight: Bold;
+    text-align: center;
+}
+
+.sheet-rolltemplate-coc-spell-roll td.sheet-template_label {
+    font-weight: Bold;
+    text-align: center;
+    width: 20%;
+}
+
+.sheet-rolltemplate-coc-bonus td.sheet-template_value, .sheet-rolltemplate-coc-default td.sheet-template_value, .sheet-rolltemplate-coc-dice-roll td.sheet-template_value, .sheet-rolltemplate-coc-body-hit-loc td.sheet-template_value, .sheet-rolltemplate-coc-attack td.sheet-template_value, .sheet-rolltemplate-coc-attack-bonus td.sheet-template_value, .sheet-rolltemplate-coc-spell-roll td.sheet-template_value, .sheet-rolltemplate-coc-bomadness-rt td.sheet-template_value, .sheet-rolltemplate-coc-bomadness-summ td.sheet-template_value, .sheet-rolltemplate-coc-defence-simple td.sheet-template_value, .sheet-rolltemplate-coc-minionattack td.sheet-template_value, .sheet-rolltemplate-coc-vehicleattack td.sheet-template_value {
+    text-align: center;
+}
+
+.sheet-rolltemplate-coc-bonus .inlinerollresult, .sheet-rolltemplate-coc-default .inlinerollresult, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult, .sheet-rolltemplate-coc-dice-roll .inlinerollresult, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult, .sheet-rolltemplate-coc-attack .inlinerollresult, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult, .sheet-rolltemplate-coc-spell-roll .inlinerollresult, .sheet-rolltemplate-coc-defence-simple .inlinerollresult, .sheet-rolltemplate-coc-minionattack .inlinerollresult, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult {
+    display: inline-block;
+    min-width: 1.5em;
+    text-align: center;
+    border: 2px solid black;
+    background: #BEBEBE;
+}
+
+.sheet-rolltemplate-coc-bonus .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-default .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-attack .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-minionattack .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.fullcrit {
+    border: 2px solid black;
+    background: #BEBEBE;
+}
+
+.sheet-rolltemplate-coc-bonus .inlinerollresult.fullfail, .sheet-rolltemplate-coc-default .inlinerollresult.fullfail, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.fullfail, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.fullfail, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.fullfail, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.fullfail, .sheet-rolltemplate-coc-attack .inlinerollresult.fullfail, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.fullfail, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.fullfail, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.fullfail, .sheet-rolltemplate-coc-minionattack .inlinerollresult.fullfail, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.fullfail {
+    border: 2px solid black;
+    background: #BEBEBE;
+}
+
+.sheet-rolltemplate-coc-bonus .inlinerollresult.importantroll, .sheet-rolltemplate-coc-default .inlinerollresult.importantroll, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.importantroll, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.importantroll, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.importantroll, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.importantroll, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.importantroll, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.importantroll, .sheet-rolltemplate-coc-minionattack .inlinerollresult.importantroll, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.importantroll {
+    border: 2px solid black;
+    background: #BEBEBE;
+    text-align: center;
+}
+
+.sheet-rolltemplate-coc-spell-roll td.sheet-template_spell_description {
+    text-align: justify;
+    padding: 5px;
+}
