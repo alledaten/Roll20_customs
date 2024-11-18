@@ -14,9 +14,9 @@ on("ready", function() {
 on("chat:message", function(msg) {
     if(msg.type === "api" && msg.content === "!!daypassed"){
         if(cha_ids.length > 0) {
-            for(i=0; i<cha_ids.length; i++) {
-                let cha_san = findObjs({type:"attribute", name:"san", characterid:cha_ids[i]});
-                let cha_sanCurrent = cha_san[0].get("current");
+            for (i in cha_ids) {
+                let cha_san = JSON.parse(JSON.stringify(findObjs({type:"attribute", name:"san", characterid:cha_ids[i]})[0]));
+                let cha_sanCurrent = cha_san.current;
                 let cha_sanStart = findObjs({type:"attribute", name:"san_start", characterid:cha_ids[i]});
                 if (cha_sanStart[0] === undefined) {
                     cha_name = findObjs({type:"character", _id:cha_ids[i]});
