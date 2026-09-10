@@ -5,6 +5,22 @@
 -->
 
 <div class="coc7-city-sheet">
+    <label class="btn-config"><input class="check-toggle-config" type="checkbox" name="attr_toggleconfig" value="1"/><span class="pictos">y</span></label>
+    <input class="check-toggle-config" type="checkbox" name="attr_toggleconfig" value="1"/>
+    <div class="section config-section">
+        <span class="config-title">펄프 옵션</span>
+        <div>
+            <label><input type="checkbox" value="5" name="attr_pulp_hp_mod" class="pulphp"> 펄프 체력</label>
+            <label><input type="checkbox" value="1" name="attr_pulp_bomtoggle" class="check-toggle-pulpbom"> 펄프 광기의 발작</label>
+            <label><input type="checkbox" class="check-toggle-pulptalents" name="attr_toggletalents" value="1"> 펄프 재능</label>
+        </div>
+        <span class="config-title">추가 옵션</span>
+        <div>
+            <label><input type="checkbox" value="1" name="attr_agemovemod"> 나이에 따른 이동력 수정</label>
+        </div>
+        <!-- 장기광기 체크용 attribute -->
+        <input type="hidden" name="attr_indins_check" value="0"/>
+    </div>
     <div class="section title-section">
     </div>
     <div class="section info-section grid">
@@ -20,7 +36,7 @@
             <strong>직업</strong>
             <input name="attr_occupation" type="text" value=""/>
             <strong>나이</strong>
-            <input name="attr_age" type="number" value=""/>
+            <input name="attr_age" type="text" value=""/>
             <strong>성별</strong>
             <input name="attr_sex" type="text" value=""/>
             <strong>거주지</strong>
@@ -33,19 +49,19 @@
         <div class="status-points grid">
             <div class="grid">
                 <strong>체력</strong>
-                <input name="attr_hp" type="number" value="0">／<input disabled="disabled" min="0" name="attr_hp_max" placeholder="최대" type="number" value="floor((@{con}+@{siz})/10)">
+                <input name="attr_hp" type="text" value="0">／<input min="0" name="attr_hp_max" placeholder="최대" type="number" readonly="readonly">
             </div>
             <div class="grid">
                 <strong>마력</strong>
-                <input name="attr_mp" type="number" value="0">／<input disabled="disabled" min="0" name="attr_mp_max" placeholder="최대" type="number" value="floor(@{pow}/5)">
+                <input name="attr_mp" type="text" value="0">／<input min="0" name="attr_mp_max" placeholder="최대" type="number" readonly="readonly">
             </div>
             <div class="grid">
                 <strong>이성</strong>
-                <input disabled="disabled" min="0" name="attr_san_thresh" placeholder="장광" type="number" value="floor((@{san_start}*4)/5)">＼
-                <input min="0" name="attr_san" placeholder="현재" type="number">／<input disabled="disabled" min="0" name="attr_san_max" placeholder="최대" type="number" value="99-@{cthulhu_mythos}">
+                <input min="0" name="attr_san_thresh" placeholder="장광" type="number" readonly="readonly">＼
+                <input min="0" name="attr_san" placeholder="현재" type="text">／<input min="0" name="attr_san_max" placeholder="최대" type="number" readonly="readonly">
                 <button class="bonus-roll" name="roll_이성판정" type="roll" value="&{template:coc-bonus} {{name=이성 판정}} {{success=[[@{san}]]}} {{hard=[[floor(@{san}/2)]]}} {{extreme=[[floor(@{san}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
                 <button class="default-roll" name="roll_이성판정" type="roll" value="&{template:coc-default} {{name=이성 판정}} {{success=[[@{san}]]}} {{hard=[[floor(@{san}/2)]]}} {{extreme=[[floor(@{san}/5)]]}} {{roll1=[[1d100]]}}"/>
-                <input min="0" name="attr_san_start" placeholder="시작" type="number">
+                <input min="0" name="attr_san_start" placeholder="시작" type="text">
             </div>
         </div>
         <div class="sanity-points grid">
@@ -65,10 +81,16 @@
                     <option value="indef_insane">장기적 광기</option>
                 </select>
             </div>
-            <div class="flex">
+            <input type="hidden" name="attr_pulp_bomtoggle" class="check-toggle-pulpbom">
+            <div class="flex coc-bom">
                 <strong>광기의 발작 표</strong>
-                <label><button class="default-roll" name="roll_bomadness-20-rt" type="roll" value="&{template:coc-bomadness-rt} {{roll1=[[1D10]]}} {{rounds=[[1d10]]}}"/> 실시간</label>
-                <label><button class="default-roll" name="roll_bomadness-20-summ" type="roll" value="&{template:coc-bomadness-summ} {{roll1=[[1D10]]}}"/> 요약</label>
+                <label><button class="default-roll" name="roll_bomadness-20-rt" type="roll" value="&{template:coc-bomadness-rt} {{roll1=[[1d10]]}} {{rounds=[[1d10]]}} {{tables=[[1d100]]}} {{under=[[1d10]]}}"/> 실시간</label>
+                <label><button class="default-roll" name="roll_bomadness-20-summ" type="roll" value="&{template:coc-bomadness-summ} {{roll1=[[1d10]]}} {{hours=[[1d10]]}} {{tables=[[1d100]]}} {{under=[[1d10]]}}"/> 요약</label>
+            </div>
+            <div class="flex pulp-bom">
+                <strong>펄프 광기의 발작 표</strong>
+                <label><button class="default-roll" name="roll_bomadness-pulp-rt" type="roll" value="&{template:coc-pulp-bomadness-rt} {{roll1=[[1d10]]}} {{rounds=[[1d10]]}} {{tables=[[1d100]]}} {{under=[[1d10]]}}"/> 실시간</label>
+                <label><button class="default-roll" name="roll_bomadness-pulp-summ" type="roll" value="&{template:coc-pulp-bomadness-summ} {{roll1=[[1d10]]}} {{hours=[[1d10]]}} {{tables=[[1d100]]}} {{under=[[1d10]]}}"/> 요약</label>
             </div>
         </div>
     </div>
@@ -81,64 +103,77 @@
                 <div class="status-characteristics flex">
                     <div>
                         <strong>근력</strong>
-                        <input name="attr_str" type="number" value="50"/>
+                        <input name="attr_str" type="text" value="50"/>
                         <button class="bonus-roll" name="roll_str_check" type="roll" value="&{template:coc-bonus} {{name=근력}} {{success=[[@{str}]]}} {{hard=[[floor(@{str}/2)]]}} {{extreme=[[floor(@{str}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
                         <button class="default-roll" name="roll_str_check" type="roll" value="&{template:coc-default} {{name=근력}} {{success=[[@{str}]]}} {{hard=[[floor(@{str}/2)]]}} {{extreme=[[floor(@{str}/5)]]}} {{roll1=[[1d100]]}}"/>
                     </div>
                     <div>
                         <strong>건강</strong>
-                        <input name="attr_con" type="number" value="50"/>
+                        <input name="attr_con" type="text" value="50"/>
                         <button class="bonus-roll" name="roll_con_check" type="roll" value="&{template:coc-bonus} {{name=건강}} {{success=[[@{con}]]}} {{hard=[[floor(@{con}/2)]]}} {{extreme=[[floor(@{con}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
                         <button class="default-roll" name="roll_con_check" type="roll" value="&{template:coc-default} {{name=건강}} {{success=[[@{con}]]}} {{hard=[[floor(@{con}/2)]]}} {{extreme=[[floor(@{con}/5)]]}} {{roll1=[[1d100]]}}"/>
                     </div>
                     <div>
                         <strong>크기</strong>
-                        <input name="attr_siz" type="number" value="50"/>
+                        <input name="attr_siz" type="text" value="50"/>
                         <button class="bonus-roll" name="roll_siz_check" type="roll" value="&{template:coc-bonus} {{name=크기}} {{success=[[@{siz}]]}} {{hard=[[floor(@{siz}/2)]]}} {{extreme=[[floor(@{siz}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
                         <button class="default-roll" name="roll_siz_check" type="roll" value="&{template:coc-default} {{name=크기}} {{success=[[@{siz}]]}} {{hard=[[floor(@{siz}/2)]]}} {{extreme=[[floor(@{siz}/5)]]}} {{roll1=[[1d100]]}}"/>
                     </div>
                     <div>
                         <strong>민첩</strong>
-                        <input name="attr_dex" type="number" value="50"/>
+                        <input name="attr_dex" type="text" value="50"/>
                         <button class="bonus-roll" name="roll_dex_check" type="roll" value="&{template:coc-bonus} {{name=민첩성}} {{success=[[@{dex}]]}} {{hard=[[floor(@{dex}/2)]]}} {{extreme=[[floor(@{dex}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
                         <button class="default-roll" name="roll_dex_check" type="roll" value="&{template:coc-default} {{name=민첩성}} {{success=[[@{dex}]]}} {{hard=[[floor(@{dex}/2)]]}} {{extreme=[[floor(@{dex}/5)]]}} {{roll1=[[1d100]]}}"/>
                     </div>
                     <div>
                         <strong>외모</strong>
-                        <input name="attr_app" type="number" value="50"/>
+                        <input name="attr_app" type="text" value="50"/>
                         <button class="bonus-roll" name="roll_app_check" type="roll" value="&{template:coc-bonus} {{name=외모}} {{success=[[@{app}]]}} {{hard=[[floor(@{app}/2)]]}} {{extreme=[[floor(@{app}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
                         <button class="default-roll" name="roll_app_check" type="roll" value="&{template:coc-default} {{name=외모}} {{success=[[@{app}]]}} {{hard=[[floor(@{app}/2)]]}} {{extreme=[[floor(@{app}/5)]]}} {{roll1=[[1d100]]}}"/>
                     </div>
                     <div>
                         <strong>교육</strong>
-                        <input name="attr_edu" type="number" value="50"/>
+                        <input name="attr_edu" type="text" value="50"/>
                         <button class="bonus-roll" name="roll_edu_check" type="roll" value="&{template:coc-bonus} {{name=교육}} {{success=[[@{edu}]]}} {{hard=[[floor(@{edu}/2)]]}} {{extreme=[[floor(@{edu}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
                         <button class="default-roll" name="roll_edu_check" type="roll" value="&{template:coc-default} {{name=교육}} {{success=[[@{edu}]]}} {{hard=[[floor(@{edu}/2)]]}} {{extreme=[[floor(@{edu}/5)]]}} {{roll1=[[1d100]]}}"/>
                     </div>
                     <div>
                         <strong>지능</strong>
-                        <input name="attr_int" type="number" value="50"/>
+                        <input name="attr_int" type="text" value="50"/>
                         <button class="bonus-roll" name="roll_int_check" type="roll" value="&{template:coc-bonus} {{name=지능}} {{success=[[@{int}]]}} {{hard=[[floor(@{int}/2)]]}} {{extreme=[[floor(@{int}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
                         <button class="default-roll" name="roll_int_check" type="roll" value="&{template:coc-default} {{name=지능}} {{success=[[@{int}]]}} {{hard=[[floor(@{int}/2)]]}} {{extreme=[[floor(@{int}/5)]]}} {{roll1=[[1d100]]}}"/>
                     </div>
                     <div>
                         <strong>정신</strong>
-                        <input name="attr_pow" type="number" value="50"/>
+                        <input name="attr_pow" type="text" value="50"/>
                         <button class="bonus-roll" name="roll_pow_check" type="roll" value="&{template:coc-bonus} {{name=정신력}} {{success=[[@{pow}]]}} {{hard=[[floor(@{pow}/2)]]}} {{extreme=[[floor(@{pow}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
                         <button class="default-roll" name="roll_pow_check" type="roll" value="&{template:coc-default} {{name=정신력}} {{success=[[@{pow}]]}} {{hard=[[floor(@{pow}/2)]]}} {{extreme=[[floor(@{pow}/5)]]}} {{roll1=[[1d100]]}}"/>
                     </div>
                     <div>
                         <strong>행운</strong>
-                        <input name="attr_luck" type="number" value="50"/>
-                        <button class="bonus-roll" name="roll_pow_check" type="roll" value="&{template:coc-bonus} {{name=행운}} {{success=[[@{luck}]]}} {{hard=[[floor(@{pow}/2)]]}} {{extreme=[[floor(@{pow}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
-                        <button class="default-roll" name="roll_pow_check" type="roll" value="&{template:coc-default} {{name=행운}} {{success=[[@{luck}]]}} {{hard=[[floor(@{pow}/2)]]}} {{extreme=[[floor(@{pow}/5)]]}} {{roll1=[[1d100]]}}"/>
+                        <input name="attr_luck" type="text" value="50"/>
+                        <button class="bonus-roll" name="roll_pow_check" type="roll" value="&{template:coc-bonus} {{name=행운}} {{success=[[@{luck}]]}} {{hard=[[floor(@{luck}/2)]]}} {{extreme=[[floor(@{luck}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
+                        <button class="default-roll" name="roll_pow_check" type="roll" value="&{template:coc-default} {{name=행운}} {{success=[[@{luck}]]}} {{hard=[[floor(@{luck}/2)]]}} {{extreme=[[floor(@{luck}/5)]]}} {{roll1=[[1d100]]}}"/>
                     </div>
                     <div>
                         <strong>이동</strong>
-                        <input name="attr_mov" placeholder="0" type="number" value=""/>
+                        <input name="attr_mov" placeholder="0" type="text" value=""/>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <input type="hidden" name="attr_toggletalents" class="check-toggle-pulptalents">
+    <div class="section pulp-talent-section">
+        <div class="inner-wrap">
+            <h4>펄프 재능</h4>
+            <fieldset class="repeating_talents">
+                <div class="grid">
+                    <input class="pulp-talent-input" name="attr_talentname" placeholder="이름" type="text" />
+                    <input class="pulp-talent-input" name="attr_talentdesc" placeholder="설명" type="text" />
+                    <button class="default-roll" name="pulp_talent" type="roll" value="&{template:coc-dice-roll} {{name=@{talentname}}} {{description=@{talentdesc}}}" />
+                </div>
+            </fieldset>
         </div>
     </div>
     <div class="section dice-section">
@@ -521,30 +556,30 @@
                     </div>
                     <div class="fight-row grid">
                         <div class="fight-weapon">
-                            <input name="attr_weapon_name_fix" readonly type="text" value="비무장"/>
+                            <input readonly type="text" value="비무장"/>
                         </div>
                         <div class="fight-dic">
-                            <button class="bonus-roll" name="roll_dodge_check" type="roll" value="&{template:coc-attack-bonus} {{name=@{weapon_name_fix}}} {{success=[[@{fighting_brawl}]]}} {{hard=[[floor(@{fighting_brawl}/2)]]}} {{extreme=[[floor(@{fighting_brawl}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}} {{damage=[[1d3+@{damage_bonus}]]}}"/>
-                            <button class="default-roll" name="roll_unarmed_check" type="roll" value="&{template:coc-attack} {{name=@{weapon_name_fix}}} {{success=[[@{fighting_brawl}]]}} {{hard=[[floor(@{fighting_brawl}/2)]]}} {{extreme=[[floor(@{fighting_brawl}/5)]]}} {{roll1=[[1d100]]}} {{damage=[[1d3+@{damage_bonus}]]}}"/>
+                            <button class="bonus-roll" name="roll_dodge_check" type="roll" value="&{template:coc-attack-bonus} {{name=비무장}} {{success=[[@{fighting_brawl}]]}} {{hard=[[floor(@{fighting_brawl}/2)]]}} {{extreme=[[floor(@{fighting_brawl}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}} {{damage=[[1d3+@{damage_bonus}]]}}"/>
+                            <button class="default-roll" name="roll_unarmed_check" type="roll" value="&{template:coc-attack} {{name=비무장}} {{success=[[@{fighting_brawl}]]}} {{hard=[[floor(@{fighting_brawl}/2)]]}} {{extreme=[[floor(@{fighting_brawl}/5)]]}} {{roll1=[[1d100]]}} {{damage=[[1d3+@{damage_bonus}]]}}"/>
                         </div>
                         <div class="fight-func">
-                            <input name="attr_weapon_skill_fix" readonly type="text" value="근접전(격투)"/>
+                            <input readonly type="text" value="근접전(격투)"/>
                         </div>
                         <div class="fight-dam">
-                            <input name="attr_weapon_damage_fix" readonly type="text" value="1d3"/>
-                            <input name="attr_weapon_db_fix" readonly type="text" value="+db"/>
+                            <input readonly type="text" value="1d3"/>
+                            <input readonly type="text" value="+db"/>
                         </div>
                         <div class="fight-dir">
-                            <input name="attr_weapon_range_fix" readonly type="text" value="-"/>
+                            <input readonly type="text" value="-"/>
                         </div>
                         <div class="fight-count">
-                            <input name="attr_weapon_attacks_fix" readonly type="text" value="1"/>
+                            <input readonly type="text" value="1"/>
                         </div>
                         <div class="fight-bullet">
-                            <input name="attr_weapon_ammo_fix" readonly type="text" value="-"/>
+                            <input readonly type="text" value="-"/>
                         </div>
                         <div class="fight-fix">
-                            <input name="attr_weapon_malf_fix" readonly type="text" value="-"/>
+                            <input readonly type="text" value="-"/>
                         </div>
                     </div>
                     <fieldset class="repeating_weapons">
@@ -553,8 +588,8 @@
                                 <input name="attr_weaponname" placeholder="무기명" type="text" value=""/>
                             </div>
                             <div class="fight-dic">
-                                <button class="bonus-roll" name="roll_dodge_check" type="roll" value="&{template:coc-attack-bonus} {{name=@{weapon_name}}} {{success=[[@{weapon_skill}]]}} {{hard=[[floor(@{weapon_skill}/2)]]}} {{extreme=[[floor(@{weapon_skill}/5)]]}} {{malf=@{weapon_malf}}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}} {{damage=[[@{weapon_damage}@{weapon_db}]]}}"/>
-                                <button class="default-roll" name="roll_weapon_skill_check" type="roll" value="&{template:coc-attack} {{name=@{weapon_name}}} {{success=[[@{weapon_skill}]]}} {{hard=[[floor(@{weapon_skill}/2)]]}} {{extreme=[[floor(@{weapon_skill}/5)]]}} {{malf=@{weapon_malf}}} {{roll1=[[1d100]]}} {{damage=[[@{weapon_damage}@{weapon_db}]]}}"/>
+                                <button class="bonus-roll" name="roll_dodge_check" type="roll" value="&{template:coc-attack-bonus} {{name=@{weaponname}}} {{success=[[@{weaponskill}]]}} {{hard=[[floor(@{weaponskill}/2)]]}} {{extreme=[[floor(@{weaponskill}/5)]]}} {{malf=@{weaponmalf}}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}} {{damage=[[@{weapondamage}@{weapondb}]]}}"/>
+                                <button class="default-roll" name="roll_weapon_skill_check" type="roll" value="&{template:coc-attack} {{name=@{weaponname}}} {{success=[[@{weaponskill}]]}} {{hard=[[floor(@{weaponskill}/2)]]}} {{extreme=[[floor(@{weaponskill}/5)]]}} {{malf=@{weaponmalf}}} {{roll1=[[1d100]]}} {{damage=[[@{weapondamage}@{weapondb}]]}}"/>
                             </div>
                             <div class="fight-func">
                                 <select name="attr_weaponskill">
@@ -2441,14 +2476,35 @@
             <td class="template_value">탐사자에게 새로운 공포증이 생깁니다. 룰북에 있는 공포증의 예를 참고해 1D100으로 정하거나 수호자가 적절한 것을 고릅니다. 탐사자는 새로운
                 공포의 대상을 피하기 위해 온갖 조치를 다 취한 상태로 1D10시간 후에 정신을 차립니다.
             </td>
+            <tr>
+                <td class="template_value">
+                    <b>공포증 번호:</b>
+                    <span>{{tables}}</span>
+                </td>
+            </tr>
             {{/rollTotal() roll1 9}}
             <!--   -->
             {{#rollTotal() roll1 10}}
             <td class="template_value">탐사자에게 새로운 집착증이 생깁니다. 룰북에 있는 집착증의 예를 참고해 1D100으로 정하거나 수호자가 적절한 것을 고릅니다.이 발작이 지속되는
                 동안, 탐사자는 새로운 집착증에 완전히 빠집니다. 다른 사람이 보기에도 명확하게 드러나는지는 수호자와 플레이어가 결정합니다.
             </td>
+            <tr>
+                <td class="template_value">
+                    <b>집착증 번호:</b>
+                    <span>{{tables}}</span>
+                </td>
+            </tr>
             {{/rollTotal() roll1 10}}
             <!--   -->
+        </tr>
+        <tr>
+            <td class="template_value"> {{rounds}} <b>라운드 동안.</b></td>
+        </tr>
+        <tr>
+            <td class="template_value">
+                <b>잠재적 광기 지속 (시간):</b>
+                <span>{{under}}</span>
+            </td>
         </tr>
     </table>
 </rolltemplate>
@@ -2501,52 +2557,345 @@
         <tr>
             <!--   -->
             {{#rollTotal() roll1 1}}
-            <td class="template_value">마지막으로 안전했던 장소에서 떠난 후로 일어난 일을 전혀 기억하지 못합니다. 이 증상은 1D10 라운드 동안 계속됩니다..</td>
+            <td class="template_value">마지막으로 안전했던 장소에서 떠난 후로 일어난 일을 전혀 기억하지 못합니다.</td>
             {{/rollTotal() roll1 1}}
             <!--   -->
             {{#rollTotal() roll1 2}}
-            <td class="template_value">심신증으로 인해 1D10 라운드 동안 눈이 안 보이거나, 소리가 안 들리거나, 사지가 안 움직이게 됩니다.</td>
+            <td class="template_value">심신증으로 인해 눈이 안 보이거나, 소리가 안 들리거나, 사지가 안 움직이게 됩니다.</td>
             {{/rollTotal() roll1 2}}
             <!--   -->
             {{#rollTotal() roll1 3}}
-            <td class="template_value">분노에 휩싸여 자제심을 완전히 잃고 1D10 라운드 동안 주변의 적과 아군 모두에게 폭력과 파괴를 가합니다.</td>
+            <td class="template_value">분노에 휩싸여 자제심을 완전히 잃고 주변의 적과 아군 모두에게 폭력과 파괴를 가합니다.</td>
             {{/rollTotal() roll1 3}}
             <!--   -->
             {{#rollTotal() roll1 4}}
-            <td class="template_value">1D10 라운드 동안 심각한 편집증에 시달립니다.</td>
+            <td class="template_value">심각한 편집증에 시달립니다.</td>
             {{/rollTotal() roll1 4}}
             <!--   -->
             {{#rollTotal() roll1 5}}
-            <td class="template_value">1D10라운드 동안 곁에 있는 사람을 자기의 중요한 사람으로 착각합니다.</td>
+            <td class="template_value">곁에 있는 사람을 자기의 중요한 사람으로 착각합니다.</td>
             {{/rollTotal() roll1 5}}
             <!--   -->
             {{#rollTotal() roll1 6}}
-            <td class="template_value">기절해서 1D10라운드 후에 깨어납니다.</td>
+            <td class="template_value">기절해서 일정시간 후에 깨어납니다.</td>
             {{/rollTotal() roll1 6}}
             <!--   -->
             {{#rollTotal() roll1 7}}
-            <td class="template_value">가능한 모든 수단을 동원해서 최대한 멀리 도망칩니다. 1D10 라운드 동안 계속 도망칩니다.</td>
+            <td class="template_value">가능한 모든 수단을 동원해서 최대한 멀리 도망칩니다.</td>
             {{/rollTotal() roll1 7}}
             <!--   -->
             {{#rollTotal() roll1 8}}
-            <td class="template_value">1D10 라운드 동안 웃거나, 울거나, 비명을 지르거나 하느라 다른 행동은 전혀 못 합니다.</td>
+            <td class="template_value">웃거나, 울거나, 비명을 지르거나 하느라 다른 행동은 전혀 못 합니다.</td>
             {{/rollTotal() roll1 8}}
             <!--   -->
             {{#rollTotal() roll1 9}}
-            <td class="template_value">새로운 공포증이 생깁니다. 룰북에 있는 공포증의 예를 참고해 1D100으로 정하거나 수호자가 적절한 것을 고릅니다. 공포의 대상이 자리에 없어도
-                탐사자는 1D10 라운드 동안 그 모습을 상상하고 공포에 질립니다.
+            <td class="template_value">새로운 공포증이 생깁니다. 룰북에 있는 공포증의 예를 참고해 1D100으로 정하거나 수호자가 적절한 것을 고릅니다. 공포의 대상이 자리에 없어도 그 모습을 상상하고 공포에 질립니다.
             </td>
+            <tr>
+                <td class="template_value">
+                    <b>공포증 번호:</b>
+                    <span>{{tables}}</span>
+                </td>
+            </tr>
             {{/rollTotal() roll1 9}}
             <!--   -->
             {{#rollTotal() roll1 10}}
-            <td class="template_value">새로운 집착증이 생깁니다. 룰북에 있는 집착증의 예를 참고해 1D100으로 정하거나 수호자가 적절한 것을 고릅니다. 탐사자는 다음 1D10 라운드
-                동안 새로운 집착증에 몰입합니다.
+            <td class="template_value">새로운 집착증이 생깁니다. 룰북에 있는 집착증의 예를 참고해 1D100으로 정하거나 수호자가 적절한 것을 고릅니다. 탐사자는 새로운 집착증에 몰입합니다.
             </td>
+            <tr>
+                <td class="template_value">
+                    <b>집착증 번호:</b>
+                    <span>{{tables}}</span>
+                </td>
+            </tr>
             {{/rollTotal() roll1 10}}
             <!--   -->
         </tr>
         <tr>
-            <td class="template_value"> {{rounds}} 라운드 동안.</td>
+            <td class="template_value"> {{rounds}} <b>라운드 동안.</b></td>
+        </tr>
+        <tr>
+            <td class="template_value">
+                <b>잠재적 광기 지속 (시간):</b>
+                <span>{{under}}</span>
+            </td>
+        </tr>
+    </table>
+</rolltemplate>
+<rolltemplate class="sheet-rolltemplate-coc-pulp-bomadness-rt">
+    <table>
+        <caption>펄프 광기의 발작 - 실시간</caption>
+        <tr>
+            <!--   -->
+            {{#rollTotal() roll1 1}}
+            <td class="template_value"><b>기억상실:</b></td>
+            {{/rollTotal() roll1 1}}
+            <!--   -->
+            {{#rollTotal() roll1 2}}
+            <td class="template_value"><b>정신 나간 계획:</b></td>
+            {{/rollTotal() roll1 2}}
+            <!--   -->
+            {{#rollTotal() roll1 3}}
+            <td class="template_value"><b>폭력:</b></td>
+            {{/rollTotal() roll1 3}}
+            <!--   -->
+            {{#rollTotal() roll1 4}}
+            <td class="template_value"><b>거만:</b></td>
+            {{/rollTotal() roll1 4}}
+            <!--   -->
+            {{#rollTotal() roll1 5}}
+            <td class="template_value"><b>안심:</b></td>
+            {{/rollTotal() roll1 5}}
+            <!--   -->
+            {{#rollTotal() roll1 6}}
+            <td class="template_value"><b>필사적인 도주:</b></td>
+            {{/rollTotal() roll1 6}}
+            <!--   -->
+            {{#rollTotal() roll1 7}}
+            <td class="template_value"><b>과시:</b></td>
+            {{/rollTotal() roll1 7}}
+            <!--   -->
+            {{#rollTotal() roll1 8}}
+            <td class="template_value"><b>다른 인격:</b></td>
+            {{/rollTotal() roll1 8}}
+            <!--   -->
+            {{#rollTotal() roll1 9}}
+            <td class="template_value"><b>공포증:</b></td>
+            {{/rollTotal() roll1 9}}
+            <!--   -->
+            {{#rollTotal() roll1 10}}
+            <td class="template_value"><b>집착증:</b></td>
+            {{/rollTotal() roll1 10}}
+            <!--   -->
+        </tr>
+        <tr>
+        <!--   -->
+        {{#rollTotal() roll1 1}}
+        <td class="template_value">이 영웅은 자기를 더 이상 영웅으로 여기지 않습니다. 펄프 재능을 사용하지 못합니다.</td>
+        </tr>
+        {{/rollTotal() roll1 1}}
+        <!--   -->
+        {{#rollTotal() roll1 2}}
+        <td class="template_value">비이성적이거나 말이 안 되는 계획을 실행하려 합니다. 그 계획은 적에게 도움이 되거나 영웅과 동료들을 위험하게 만드는 것이어야 합니다.</td>
+        </tr>
+        {{/rollTotal() roll1 2}}
+        <!--   -->
+        {{#rollTotal() roll1 3}}
+        <td class="template_value">분노에 휩싸여 자제심을 완전히 잃고 주변의 적과 아군 모두에게 폭력과 파괴를 가합니다.</td>
+        </tr>
+        {{/rollTotal() roll1 3}}
+        <!--   -->
+        {{#rollTotal() roll1 4}}
+        <td class="template_value">거만한 태도로 자기 계획을 뽐냅니다. “자, 내가 친구들과 함께 여기에 있는 구울들을 전부 쓸어버리기 전에 한 마디만 하지…”</td>
+        </tr>
+        {{/rollTotal() roll1 4}}
+        <!--   -->
+        {{#rollTotal() roll1 5}}
+        <td class="template_value">자기가 처한 위험이 별 것 아니라고 굳게 믿고 가만히 앉아 쉽니다. 잠깐 동안 느긋하게 시가를 태우거나 허리에 찬 술통을 열고 한 모금 마실 수도 있습니다.</td>
+        </tr>
+        {{/rollTotal() roll1 5}}
+        <!--   -->
+        {{#rollTotal() roll1 6}}
+        <td class="template_value">가능한 모든 수단을 동원해서 최대한 멀리 도망칩니다. 하나밖에 없는 차를 혼자 몰고 가버릴 수도 있습니다.</td>
+        </tr>
+        {{/rollTotal() roll1 6}}
+        <!--   -->
+        {{#rollTotal() roll1 7}}
+        <td class="template_value">주목을 받고 싶어서 안달하며, 무모한 짓을 벌이기 쉬운 상태가 됩니다.</td>
+        </tr>
+        {{/rollTotal() roll1 7}}
+        <!--   -->
+        {{#rollTotal() roll1 8}}
+        <td class="template_value">완전히 다른 인격으로 바뀝니다. 그 인격은 영웅의 원래 성격과 정반대입니다. 하나가 다정하면 다른 하나는 냉혹합니다. 하나가 이기적이면 다른 하나는 이타적입니다. 이 인격은 그 영웅이 영구적인 광기에 빠졌을 때의 모습을 암시하는 용도로도 쓸 수 있습니다.</td>
+        </tr>
+        {{/rollTotal() roll1 8}}
+        <!--   -->
+        {{#rollTotal() roll1 9}}
+        <td class="template_value">새로운 공포증이 생깁니다. 표: 공포증(크툴루의 부름 수호자 룰북 p.158)에서 1D100을 굴리거나 수호자가 적절한 것을 고릅니다. 공포의 대상이 자리에 없어도 영웅은 그 모습을 상상하고 공포에 질립니다.</td>
+        </tr>
+        <tr>
+            <td class="template_value">
+                <b>공포증 번호:</b>
+                <span>{{tables}}</span>
+            </td>
+        </tr>
+        {{/rollTotal() roll1 9}}
+        <!--   -->
+        {{#rollTotal() roll1 10}}
+        <td class="template_value">새로운 집착증이 생깁니다. 표: 집착증(크툴루의 부름 수호자 룰북 p.159)에서 1D100을 굴리거나 수호자가 적절한 것을 고릅니다. 탐사자는 새로운 집착증에 몰입합니다.</td>
+        </tr>
+        <tr>
+            <td class="template_value">
+                <b>집착증 번호: </b>
+                <span>{{tables}}</span>
+            </td>
+        </tr>
+        {{/rollTotal() roll1 10}}
+        <!--   -->
+        <tr>
+            <td class="template_value">
+                <span>{{rounds}} <b>라운드 동안</b></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="template_value">
+                <b>잠재적 광기 지속 (시간):</b>
+                <span>{{under}}</span>
+            </td>
+        </tr>
+    </table>
+</rolltemplate>
+<rolltemplate class="sheet-rolltemplate-coc-pulp-bomadness-summ">
+    <table>
+        <caption>광기의 발작 — 요약</caption>
+        <tr>
+            <!--   -->
+            {{#rollTotal() roll1 1}}
+            <td class="template_value"><b>기억상실:</b></td>
+            {{/rollTotal() roll1 1}}
+            <!--   -->
+            {{#rollTotal() roll1 2}}
+            <td class="template_value"><b>도난:</b></td>
+            {{/rollTotal() roll1 2}}
+            <!--   -->
+            {{#rollTotal() roll1 3}}
+            <td class="template_value"><b>부상:</b></td>
+            {{/rollTotal() roll1 3}}
+            <!--   -->
+            {{#rollTotal() roll1 4}}
+            <td class="template_value"><b>폭력:</b></td>
+            {{/rollTotal() roll1 4}}
+            <!--   -->
+            {{#rollTotal() roll1 5}}
+            <td class="template_value"><b>사상/신념:</b></td>
+            {{/rollTotal() roll1 5}}
+            <!--   -->
+            {{#rollTotal() roll1 6}}
+            <td class="template_value"><b>중요한 사람들:</b></td>
+            {{/rollTotal() roll1 6}}
+            <!--   -->
+            {{#rollTotal() roll1 7}}
+            <td class="template_value"><b>시설 감금:</b></td>
+            {{/rollTotal() roll1 7}}
+            <!--   -->
+            {{#rollTotal() roll1 8}}
+            <td class="template_value"><b>필사적인 도주:</b></td>
+            {{/rollTotal() roll1 8}}
+            <!--   -->
+            {{#rollTotal() roll1 9}}
+            <td class="template_value"><b>공포증:</b></td>
+            {{/rollTotal() roll1 9}}
+            <!--   -->
+            {{#rollTotal() roll1 10}}
+            <td class="template_value"><b>집착증:</b></td>
+            {{/rollTotal() roll1 10}}
+            <!--   -->
+        </tr>
+        <tr>
+            <!--   -->
+            {{#rollTotal() roll1 1}}
+            <td class="template_value">영웅은 낯선 곳에서 정신을 차리며, 자기가 누구인지도 기억하지 못하고 펄프 재능도 쓰지 못합니다. 시간이 지나면 기억이 조금씩 돌아옵니다. 펄프 재능은 위급할 때만 돌아옵니다. 위급할 때란 누군가의 목숨이 위험할 때를 말합니다. 누군가의 목숨이 위험해지면 영웅은 운 판정을 합니다. 성공하면 재능이 돌아옵니다. 실패하면 1D10라운드 후에 다시 시도할 수 있습니다.</td>
+        </tr>
+        <tr>
+            <td class="template_value">
+                <b>시간:</b>
+                <span>{{hours}}</span>
+            </td>
+        </tr>
+        {{/rollTotal() roll1 1}}
+        <!--   -->
+        {{#rollTotal() roll1 2}}
+        <td class="template_value">영웅이 1D10시간 후에 정신을 차려 보니 도난을 당했습니다. 다친 곳은 없습니다. 소중한 물건 (백스토리 참조)을 지니고 있었으면 운 판정을 해서 빼앗겼는지 확인합니다. 그 외의 귀중품은 자동으로 없어집니다.</td>
+        </tr>
+        <tr>
+            <td class="template_value">
+                <b>시간:</b>
+                <span>{{hours}}</span>
+            </td>
+        </tr>
+        {{/rollTotal() roll1 2}}
+        <!--   -->
+        {{#rollTotal() roll1 3}}
+        <td class="template_value">영웅이 1D10시간 후에 정신을 차려 보니 잔뜩 다쳤습니다. 체력은 광기에 빠지기 전의 절반입니다. 도난을 당하지는 않았습니다. 부상을 입은 경위는 수호자가 정합니다.</td>
+        </tr>
+        <tr>
+            <td class="template_value">
+                <b>시간:</b>
+                <span>{{hours}}</span>
+            </td>
+        </tr>
+        {{/rollTotal() roll1 3}}
+        <!--   -->
+        {{#rollTotal() roll1 4}}
+        <td class="template_value">영웅이 폭력과 파괴 행각을 벌입니다. 정신을 차렸을 때 그 사이의 행동이 기억날 수도 있고 기억나지 않을 수도 있습니다. 영웅이 무엇을 대상으로 폭력을 휘둘렀는지, 그리고 사람을 죽이거나 다치게 했는지는 수호자가 정합니다.</td>
+        </tr>
+        {{/rollTotal() roll1 4}}
+        <!--   -->
+        {{#rollTotal() roll1 5}}
+        <td class="template_value">영웅의 백스토리 항목에서 사상/신념을 확인합니다. 영웅은 그중 하나를 극단적이고 괴이한 방법으로 표출합니다. 영웅이 자기의 재능과 신념에 휘둘린 나머지 인간성을 잃기 시작하고 옳고 그름의 경계가 흐려져 과대망상적인 행동을 보이는 경우가 많습니다.</td>
+        </tr>
+        {{/rollTotal() roll1 5}}
+        <!--   -->
+        {{#rollTotal() roll1 6}}
+        <td class="template_value">영웅의 백스토리에서 중요한 사람들을 찾아 그 관계가 중요한 이유를 확인합니다. 영웅은 발작이 지속되는 동안 (1D10시간 이상) 중요한 사람에게 가까이 가서 관계의 성질에 맞는 행동을 하려 합니다.</td>
+        </tr>
+        <tr>
+            <td class="template_value">
+                <b>시간:</b>
+                <span>{{hours}}</span>
+            </td>
+        </tr>
+        {{/rollTotal() roll1 6}}
+        <!--   -->
+        {{#rollTotal() roll1 7}}
+        <td class="template_value">영웅이 정신을 차려 보니 정신병원이나 경찰서 유치장에 갇혀 있습니다. 그간의 사정이 조금씩 기억나기 시작할 수도 있습니다.</td>
+        </tr>
+        {{/rollTotal() roll1 7}}
+        <!--   -->
+        {{#rollTotal() roll1 8}}
+        <td class="template_value">영웅이 정신을 차려 보니 먼 곳에 와 있습니다. 엠파이어스테이트 빌딩 꼭대기, 백악관, 군부대 깊숙한 곳 등의 중요한 장소를 적절하게 정하세요. 어떻게 거기까지 갔는지는 기억이 나지 않습니다.</td>
+        </tr>
+        {{/rollTotal() roll1 8}}
+        <!--   -->
+        {{#rollTotal() roll1 9}}
+        <td class="template_value">새로운 공포증이 생깁니다. 표: 공포증(크툴루의 부름 수호자 룰북 p.158)에서 1D100을 굴리거나 수호자가 적절한 것을 고릅니다. 영웅은 새로운 공포의 대상을 피하기 위해 온갖 조치를 다 취한 상태로 1D10시간 후에 정신을 차립니다.</td>
+        </tr>
+        <tr>
+            <td class="template_value">
+                <b>공포증 번호:</b>
+                <span>{{tables}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="template_value">
+                <b>시간:</b>
+                <span>{{hours}}</span>
+            </td>
+        </tr>
+        {{/rollTotal() roll1 9}}
+        <!--   -->
+        {{#rollTotal() roll1 10}}
+        <td class="template_value">새로운 집착증이 생깁니다. 표: 집착증(크툴루의 부름 수호자 룰북 p.159)에서 1D100을 굴리거나 수호자가 적절한 것을 고릅니다. 영웅은 1D10시간 후에 정신을 차립니다. 이 발작이 지속되는 동안, 영웅은 새로운 집착증에 완전히 빠집니다. 다른 사람에게도 명확하게 드러나는지는 수호자와 플레이어가 결정합니다.</td>
+        </tr>
+        <tr>
+            <td class="template_value">
+                <b>집착증 번호:</b>
+                <span>{{tables}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="template_value">
+                <span>시간:</span>
+                <span>{{hours}}</span>
+            </td>
+        </tr>
+        {{/rollTotal() roll1 10}}
+        <!--   -->
+        <tr>
+            <td class="template_value">
+                <b>잠재적 광기 지속(시간):</b>
+                <span>{{under}}</span>
+            </td>
         </tr>
     </table>
 </rolltemplate>
@@ -2554,10 +2903,17 @@
 <rolltemplate class="sheet-rolltemplate-coc-dice-roll">
     <table>
         <caption>{{name}}</caption>
+        {{#diceroll}}
         <tr>
             <td class="template_label">굴림:</td>
             <td class="template_value">{{diceroll}}</td>
         </tr>
+        {{/diceroll}}
+        {{#description}}
+        <tr>
+            <td colspan="2" class="template_value">{{description}}</td>
+        </tr>
+        {{/description}}
     </table>
 </rolltemplate>
 <rolltemplate class="sheet-rolltemplate-coc-body-hit-loc">
@@ -6914,17 +7270,30 @@
         </tr>
     </table>
 </rolltemplate>
+<rolltemplate class="sheet-rolltemplate-coc-one-row-center">
+    <table>
+        <caption>{{name}}</caption>
+        <tr>
+            <td class="template_value">{{tr1}}</td>
+        </tr>
+        <tr>
+            <td class="template_value">{{tr2}}</td>
+        </tr>
+    </table>
+</rolltemplate>
 
 <!---------------------------- 스크립트 ---------------------------->
 <!--------- code by Roll20 Call of Cthulhu character sheet --------->
 
 <script type="text/worker">
-    on("add:dex add:siz add:str change:dex change:siz change:str", function () {
-        getAttrs(["str", "siz", "dex", "age"], function (values) {
+    // DB,Build and Move Calc Function
+    on("sheet:opened add:dex add:siz add:str change:dex change:siz change:str change:agemovemod change:age", function () {
+        getAttrs(["str", "siz", "dex", "age", "agemovemod"], function (values) {
             var istr = parseInt(values.str);
             var isiz = parseInt(values.siz);
             var idex = parseInt(values.dex);
             var iage = parseInt(values.age);
+            var check = parseInt(values.agemovemod);
             var siz_str_tot = istr + isiz;
             switch (true) {
                 case (siz_str_tot < 65):
@@ -6972,76 +7341,199 @@
                         damage_bonus: "5d6", build: "+6"
                     });
                     break;
-            } //end switch (true)
-            if (idex < isiz && istr < isiz) {
-                var imov = 7;
-            } else if (idex > isiz && istr > isiz) {
-                var imov = 9;
-            } else {
-                var imov = 8;
+                case (siz_str_tot > 524 && siz_str_tot < 605):
+                    setAttrs({
+                        damage_bonus: "6d6", build: "+7"
+                    });
+                    break;
+                case (siz_str_tot > 604 && siz_str_tot < 685):
+                    setAttrs({
+                        damage_bonus: "7d6", build: "+8"
+                    });
+                    break;
+                case (siz_str_tot > 684 && siz_str_tot < 765):
+                    setAttrs({
+                        damage_bonus: "8d6", build: "+9"
+                    });
+                    break;
+                case (siz_str_tot > 764 && siz_str_tot < 845):
+                    setAttrs({
+                        damage_bonus: "9d6", build: "+10"
+                    });
+                    break;
+                case (siz_str_tot > 844 && siz_str_tot < 925):
+                    setAttrs({
+                        damage_bonus: "10d6", build: "+11"
+                    });
+                    break;
+                default:
+                    setAttrs({
+                        damage_bonus: "10d6", build: "Error"
+                    });
+                    break;
             }
-            if (iage < 40) {
-                imov = imov;
-            } else if (iage > 39 && iage < 50) {
-                imov = imov - 1;
-            } else if (iage > 49 && iage < 60) {
-                imov = imov - 2;
-            } else if (iage > 59 && iage < 70) {
-                imov = imov - 3;
-            } else if (iage > 69 && iage < 80) {
-                imov = imov - 4;
-            } else if (iage > 79 && iage < 90) {
-                imov = imov - 5;
-            } else if (iage > 89) {
-                imov = imov - 6;
+            // MOV Calc Function
+            switch (true) {
+                case idex < isiz && istr < isiz:
+                    var imov = 7;
+                    break;
+                case idex > isiz && istr > isiz:
+                    var imov = 9;
+                    break;
+                default:
+                    var imov = 8;
+                    break;
             }
+            // Age Move Modifiers Function
+            if (check == 1)
+            {
+                switch (true)
+                {
+                    case iage < 40:
+                        imov = imov;
+                        break;
+                    case iage > 39 && iage < 50:
+                        imov = imov - 1;
+                        break;
+                    case iage > 49 && iage < 60:
+                        imov = imov - 2;
+                        break;
+                    case iage > 59 && iage < 70:
+                        imov = imov - 3;
+                        break;
+                    case iage > 69 && iage < 80:
+                        imov = imov - 4;
+                        break;
+                    case iage > 79 && iage < 90:
+                        imov = imov - 5;
+                        break;
+                    case iage > 89:
+                        imov = imov - 6;
+                        break;
+                }
+            }
+
+
             setAttrs({mov: imov});
         }); //end getAttrs
     }); //end on("add:siz...
 
-    on("add:age change:age", function () {
-        getAttrs(["str", "siz", "dex", "age"], function (values) {
-            var iage = parseInt(values.age);
-            var istr = parseInt(values.str);
+    // hp_max, mp_max, luck_max Calc Function
+    on("sheet:opened add:con add:siz add:pow change:con change:siz change:pow change:pulp_hp_mod", function () {
+        getAttrs(["con", "siz", "pow", "pulp_hp_mod"], function (values) {
+            var icon = parseInt(values.con);
             var isiz = parseInt(values.siz);
-            var idex = parseInt(values.dex);
-            if (idex < isiz && istr < isiz) {
-                var imov = 7;
-            } else if (idex > isiz && istr > isiz) {
-                var imov = 9;
-            } else {
-                var imov = 8;
-            }
-            if (iage < 40) {
-                imov = imov;
-            } else if (iage > 39 && iage < 50) {
-                imov = imov - 1;
-            } else if (iage > 49 && iage < 60) {
-                imov = imov - 2;
-            } else if (iage > 59 && iage < 70) {
-                imov = imov - 3;
-            } else if (iage > 69 && iage < 80) {
-                imov = imov - 4;
-            } else if (iage > 79 && iage < 90) {
-                imov = imov - 5;
-            } else if (iage > 89) {
-                imov = imov - 6;
-            }
-            setAttrs({mov: imov});
-        }); //end getAttrs
-    }); //end on("add:age...
-
-    // code by Tateck Call of Cthulhu character sheet
-    on("change:con change:siz change:cthulhu_mythos_mod change:pow", function () {
-        getAttrs(["con", "siz", "cthulhu_mythos_base", "cthulhu_mythos_mod", "pow"], function (values) {
-            let max_hp = Math.floor(((values.con * 1) + (values.siz * 1)) / 10);
-            let max_san = 99 - ((values.cthulhu_mythos_mod * 1) + (values.cthulhu_mythos_base * 1));
-            let max_mp = Math.floor((values.pow * 1) / 5);
-            setAttrs({hp_max: max_hp});
-            setAttrs({san_max: max_san});
-            setAttrs({mp_max: max_mp});
+            var ipow = parseInt(values.pow);
+            var ipulp_hp = parseInt(values.pulp_hp_mod) || 0;
+            var ihp_max = Math.floor((icon + isiz) / (10 - ipulp_hp));
+            var imp_max = Math.floor(ipow / 5);
+            setAttrs({
+                mp_max: imp_max, hp_max: ihp_max, luck_max: "99" //set Luck Max to 99
+            });
         });
     });
 
+    // Sanity Start Validation
+    on("sheet:opened add:san_start change:san_start", function () {
+        getAttrs(["san_start"], function (v) {
+            var sa = Math.abs(parseInt(v.san_start));
+
+            if (isNaN(sa) || sa == 0 || sa > 99) {
+                setAttrs({san_start: ""});
+            } else {
+                setAttrs({san_start: sa});
+            }
+        });
+    });
+    // 4/5 Sanity
+    on("sheet:opened add:san_start change:san_start", function () {
+        getAttrs(["san_start"], function (v) {
+            if (
+                isNaN(v.san_start) ||
+                v.san_start == "" ||
+                v.san_start == " " ||
+                v.san_start == "0"
+            ) {
+                setAttrs({
+                    san_thresh: ""
+                });
+            } else {
+                setAttrs({
+                    san_thresh: Math.floor(Math.abs(v.san_start) * (4 / 5))
+                });
+            }
+        });
+    });
+
+    // Indefinite Insanity Check
+    on("change:san", function () {
+        getAttrs(["indins_check", "san", "san_thresh"], function (v) {
+            var check = parseInt(v.indins_check) || 0;
+            var san = Math.abs(parseInt(v.san));
+            var thresh = parseInt(v.san_thresh);
+
+            if (isNaN(san)) {
+                setAttrs({
+                    san: ""
+                });
+                return;
+            }
+
+            if (
+                check == 0 &&
+                !isNaN(thresh) &&
+                san <= thresh
+            ) {
+                startRoll(
+                    "&{template:coc-one-row-center} " +
+                    "{{name=현재 정신 상태}} " +
+                    "{{tr1=주의}} " +
+                    "{{tr2=장기적인 광기 상태에 진입했습니다.}}",
+                    function (d) {
+                        finishRoll(d.rollId);
+                    }
+                );
+
+                setAttrs({
+                    san: san,
+                    indins_check: 1
+                });
+            } else {
+                setAttrs({
+                    san: san
+                });
+            }
+        });
+    });
+
+    // Indefinite Insanity Check Reset
+    on("add:san_start change:san_start", function () {
+        getAttrs(["san_start"], function (v) {
+            if (
+                isNaN(v.san_start) ||
+                v.san_start == "" ||
+                v.san_start == " " ||
+                v.san_start == "0"
+            ) {
+                setAttrs({
+                    indins_check: 1
+                });
+            } else {
+                setAttrs({
+                    indins_check: 0
+                });
+            }
+        });
+    });
+
+    //Function Max Sanity Calc
+    on("sheet:opened add:cthulhu_mythos change:cthulhu_mythos", function () {
+        getAttrs(["cthulhu_mythos"], function (v) {
+            var cm = parseInt(v.cthulhu_mythos) || 0;
+            setAttrs({
+                san_max: 99 - cm //1920 (Classic)
+            });
+        });
+    });
 
 </script>

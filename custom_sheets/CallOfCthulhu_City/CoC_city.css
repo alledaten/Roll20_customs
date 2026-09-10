@@ -24,6 +24,10 @@
     margin: 0;
 }
 
+.red {
+    border: 1px solid red;
+}
+
 /* 공통 */
 :root {
     --sheet-font-input: 'GongGothicMedium';
@@ -55,10 +59,11 @@
 }
 
 .ui-dialog .charsheet input:hover {
-    background-color: rgb(255 249 232 / 90%);;
+    background-color: rgb(255 249 232 / 90%);
 }
 
-input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -96,7 +101,6 @@ input[type='number'] {
     display: inline-block;
     cursor: pointer;
     transform: translate(1px, 1px);
-    /*color: var(--sheet-color-point);*/
 }
 
 .ui-dialog .charsheet input {
@@ -119,7 +123,7 @@ input[type='number'] {
     font-size: 12px;
 }
 
-.ui-dialog .charsheet input[type=number]:disabled, .ui-dialog .charsheet input[type=number]:disabled {
+.ui-dialog .charsheet input[type=number]:read-only, .ui-dialog .charsheet input[type=number]:read-only {
     color: #4b4b4b;
     background-color: rgba(0, 0, 0, 0.1);
 }
@@ -131,8 +135,8 @@ input[type='number'] {
     overflow-wrap: anywhere;
     font-family: "Nanum Gothic", '돋움', serif;
     font-size: 12px;
-    padding : 5px;
-    line-height : 1.3;
+    padding: 5px;
+    line-height: 1.3;
     border: 1px solid #000000;
     background-color: rgba(255, 255, 255, 0.9);
 }
@@ -164,7 +168,7 @@ button.btn.btn-danger.pictos.repcontrol_del {
 
 .ui-dialog .charsheet hr {
     border-top: 1px dashed #000000;
-    margin : 3px 0 5px;
+    margin: 3px 0 5px;
 }
 
 .ui-dialog .charsheet button.default-roll[type=roll]::before {
@@ -177,7 +181,7 @@ button.btn.btn-danger.pictos.repcontrol_del {
 .ui-dialog .charsheet button.bonus-roll[type=roll]::before {
     font-family: 'dicefontd10';
     content: 'a';
-    color: #4e26ff;
+    color: #000000;
     font-weight: bold;
 }
 
@@ -246,7 +250,7 @@ button.btn.btn-danger.pictos.repcontrol_del {
     background-repeat: no-repeat;
     border: 2px solid black;
     color: black;
-    width: 840px;
+    width: 830px;
     font-family: var(--sheet-font-normal);
 }
 
@@ -276,25 +280,91 @@ h1.title-text {
     margin-top: 5px;
     width: 15px;
     height: 15px;
-    background-image: url("https://i.imgur.com/OuOzz9U.png");
+    background-image: url("https://i.imgur.com/J29otfS.png");
     background-size: contain;
     background-repeat: no-repeat;
     transition: .3s;
 }
 
-.charsheet input[type="checkbox"].expand:hover{
+.charsheet input[type="checkbox"].expand:hover {
     cursor: pointer;
     transform: translate(1px, 1px);
 }
 
-.charsheet input[type="checkbox"].expand:checked{
-    background-image: url("https://i.imgur.com/OuOzz9U.png");
-    transform: rotate(-90deg);
+.charsheet input[type="checkbox"].expand:checked {
+    background-image: url("https://i.imgur.com/J29otfS.png");
+    transform: rotate(90deg);
     transition: .3s;
 }
 
-.charsheet input[type="checkbox"].expand::before{
+.charsheet input[type="checkbox"].expand::before {
     display: none;
+}
+
+/* 설정 */
+.charsheet label.btn-config {
+    border: 1px solid #ffffff;
+    display: inline-block;
+    background-color: #000000;
+    width: 30px;
+    height: 10px;
+    font-size: 13px;
+    line-height: 11px;
+    padding-left: 3px;
+    margin-left: 3px;
+    border-radius: 3px;
+    color: #ffffff;
+}
+
+.check-toggle-config {
+    display: none !important;
+}
+
+label.btn-config:hover,
+.config-section label:hover {
+    transform: none !important;
+}
+
+.ui-dialog .charsheet input:hover {
+    background-color: transparent !important
+}
+
+.charsheet span.pictos::after { /*Close Config*/
+    content: "⮟";
+    margin-left: 3px;
+}
+
+.charsheet .check-toggle-config:checked + span.pictos::after { /*Show Configuration*/
+    content: "⮝";
+    margin-left: 3px;
+}
+
+.check-toggle-config:checked ~ .config-section {
+    display: block;
+}
+
+.config-section {
+    display: none;
+    background-color: rgba(255, 255, 255, 90%);
+    width: 300px;
+    margin-left: 3px;
+    padding: 10px;
+    border: 2px solid black;
+    position: absolute;
+    z-index: 5;
+}
+
+.ui-dialog .charsheet .config-section span.config-title {
+    font-weight: 800;
+}
+
+.ui-dialog .charsheet .config-section label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 400;
+    height: 20px;
+    font-family: 'Dotum';
+    margin-right: 10px;
 }
 
 /* 인포 */
@@ -331,8 +401,9 @@ h1.title-text {
 }
 
 .info-data {
-    grid-template-columns: 1.5fr 2fr 1fr 2.5fr 1fr 1fr repeat(3, 1fr 2fr);
+    grid-template-columns: 1.5fr 2fr 1fr 2.5fr repeat(2, 1fr 1.5fr) repeat(2, 1fr 2fr);
     justify-items: center;
+    grid-gap: 5px;
 }
 
 .status-points {
@@ -364,6 +435,18 @@ h1.title-text {
     gap: 20px;
 }
 
+div.pulp-bom {
+    display: none;
+}
+
+.ui-dialog .charsheet .sanity-points input.check-toggle-pulpbom[value="1"] ~ div.pulp-bom {
+    display: flex;
+}
+
+.ui-dialog .charsheet .sanity-points input.check-toggle-pulpbom[value="1"] ~ div.coc-bom {
+    display: none;
+}
+
 /* 특성 */
 .status-characteristics {
     gap: 10px;
@@ -380,10 +463,39 @@ h1.title-text {
     font-size: 14px;
 }
 
-.status-characteristics div input[type=number] {
+.status-characteristics div input[type=text] {
     height: 40px;
     font-size: 25px;
     width: 50px !important;
+}
+
+div.pulp-talent-section {
+    display: none;
+}
+
+.ui-dialog .charsheet input.check-toggle-pulptalents[value="1"] ~ div.pulp-talent-section {
+    display: block;
+}
+
+.pulp-talent-section .inner-wrap {
+    border-top: 1px dashed #000000;
+}
+
+.pulp-talent-section .inner-wrap h4 {
+    margin: 5px 0 10px;
+    text-align: center;
+}
+
+.pulp-talent-section .inner-wrap .grid {
+    grid-template-columns: 150px auto 20px;
+    margin-bottom: 10px;
+}
+
+.pulp-talent-section .inner-wrap .pulp-talent-input {
+    font-family: var(--sheet-font-normal);
+    font-size: 13px;
+    width: 100%;
+    padding : 3px 0;
 }
 
 .dice-section .inner-wrap {
@@ -547,6 +659,7 @@ h1.title-text {
 .ui-dialog .charsheet .additional-section .skill-label-input {
     height: 23px;
     text-align: center;
+    font-size: 13px;
 }
 
 #spell-section, #simple-armor-section, #armor-section {
@@ -576,16 +689,18 @@ h1.title-text {
 }
 
 #spell-section h4 {
-    margin : 5px;
+    margin: 5px;
     text-align: center;
 }
 
 #spell-section .spell-header {
     display: grid;
     grid-template-columns: 20px auto 20pt;
-    margin-bottom : 8px;
+    margin-bottom: 8px;
 }
+
 #spell-section input[type=text] {
+    font-size: 13px;
     padding: 2px;
     text-align: center;
 }
@@ -595,12 +710,18 @@ h1.title-text {
     margin: 5px 20px;
 }
 
+#spell-section .spell-expansion input[type=text] {
+    font-size: 13px;
+    padding: 0;
+    margin: 0;
+}
+
 #spell-section .expand-spell[value="1"] ~ .spell-expansion {
     display: grid;
 }
 
 #spell-section div.grid-container {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 50px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     justify-items: center;
 }
 
@@ -870,14 +991,14 @@ h1.title-text {
 
 /* ROLL TEMPLATES */
 
-.sheet-rolltemplate-coc-bonus table, .sheet-rolltemplate-coc-default table, .sheet-rolltemplate-coc-bomadness-summ table, .sheet-rolltemplate-coc-bomadness-rt table, .sheet-rolltemplate-coc-dice-roll table, .sheet-rolltemplate-coc-body-hit-loc table, .sheet-rolltemplate-coc-attack table, .sheet-rolltemplate-coc-attack-bonus table, .sheet-rolltemplate-coc-spell-roll table, .sheet-rolltemplate-coc-defence-simple table, .sheet-rolltemplate-coc-minionattack table, .sheet-rolltemplate-coc-vehicleattack table, .sheet-rolltemplate-coc table, .sheet-rolltemplate-coc-1 table, .sheet-rolltemplate-coc-attack-1 table {
+.sheet-rolltemplate-coc-bonus table, .sheet-rolltemplate-coc-default table, .sheet-rolltemplate-coc-bomadness-summ table, .sheet-rolltemplate-coc-bomadness-rt table, .sheet-rolltemplate-coc-pulp-bomadness-summ table, .sheet-rolltemplate-coc-pulp-bomadness-rt table, .sheet-rolltemplate-coc-dice-roll table, .sheet-rolltemplate-coc-body-hit-loc table, .sheet-rolltemplate-coc-attack table, .sheet-rolltemplate-coc-attack-bonus table, .sheet-rolltemplate-coc-spell-roll table, .sheet-rolltemplate-coc-defence-simple table, .sheet-rolltemplate-coc-minionattack table, .sheet-rolltemplate-coc-vehicleattack table, .sheet-rolltemplate-coc table, .sheet-rolltemplate-coc-1 table, .sheet-rolltemplate-coc-attack-1 table, .sheet-rolltemplate-coc-one-row-center table {
     width: 100%;
     border: 1px solid black;
     color: black;
     background: #FFFFFF;
 }
 
-.sheet-rolltemplate-coc-bonus caption, .sheet-rolltemplate-coc-default caption, .sheet-rolltemplate-coc-bomadness-summ caption, .sheet-rolltemplate-coc-bomadness-rt caption, .sheet-rolltemplate-coc-dice-roll caption, .sheet-rolltemplate-coc-body-hit-loc caption, .sheet-rolltemplate-coc-attack caption, .sheet-rolltemplate-coc-attack-bonus caption, .sheet-rolltemplate-coc-spell-roll caption, .sheet-rolltemplate-coc-defence-simple caption, .sheet-rolltemplate-coc-minionattack caption, .sheet-rolltemplate-coc-vehicleattack caption, .sheet-rolltemplate-coc caption, .sheet-rolltemplate-coc-1 caption, .sheet-rolltemplate-coc-attack-1 caption {
+.sheet-rolltemplate-coc-bonus caption, .sheet-rolltemplate-coc-default caption, .sheet-rolltemplate-coc-bomadness-summ caption, .sheet-rolltemplate-coc-bomadness-rt caption, .sheet-rolltemplate-coc-pulp-bomadness-summ caption, .sheet-rolltemplate-coc-pulp-bomadness-rt caption, .sheet-rolltemplate-coc-dice-roll caption, .sheet-rolltemplate-coc-body-hit-loc caption, .sheet-rolltemplate-coc-attack caption, .sheet-rolltemplate-coc-attack-bonus caption, .sheet-rolltemplate-coc-spell-roll caption, .sheet-rolltemplate-coc-defence-simple caption, .sheet-rolltemplate-coc-minionattack caption, .sheet-rolltemplate-coc-vehicleattack caption, .sheet-rolltemplate-coc caption, .sheet-rolltemplate-coc-1 caption, .sheet-rolltemplate-coc-attack-1 caption, .sheet-rolltemplate-coc-one-row-center caption {
     text-align: center;
     background: black;
     color: white;
@@ -887,16 +1008,20 @@ h1.title-text {
     line-height: 1.6em;
 }
 
-.sheet-rolltemplate-coc-bonus td, .sheet-rolltemplate-coc-default td, .sheet-rolltemplate-coc-bomadness-summ td, .sheet-rolltemplate-coc-bomadness-rt td, .sheet-rolltemplate-coc-dice-roll td, .sheet-rolltemplate-coc-attack td, .sheet-rolltemplate-coc-attack-bonus td, .sheet-rolltemplate-coc-defence-simple td, .sheet-rolltemplate-coc-minionattack td, .sheet-rolltemplate-coc-vehicleattack td, .sheet-rolltemplate-coc td, .sheet-rolltemplate-coc-1 td, .sheet-rolltemplate-coc-attack-1 td, .sheet-rolltemplate-coc-body-hit-loc td, .sheet-rolltemplate-coc-spell-roll td {
+.sheet-rolltemplate-coc-bonus td, .sheet-rolltemplate-coc-default td, .sheet-rolltemplate-coc-bomadness-summ td, .sheet-rolltemplate-coc-bomadness-rt td, .sheet-rolltemplate-coc-pulp-bomadness-summ td, .sheet-rolltemplate-coc-pulp-bomadness-rt td, .sheet-rolltemplate-coc-dice-roll td, .sheet-rolltemplate-coc-attack td, .sheet-rolltemplate-coc-attack-bonus td, .sheet-rolltemplate-coc-defence-simple td, .sheet-rolltemplate-coc-minionattack td, .sheet-rolltemplate-coc-vehicleattack td, .sheet-rolltemplate-coc td, .sheet-rolltemplate-coc-1 td, .sheet-rolltemplate-coc-attack-1 td, .sheet-rolltemplate-coc-body-hit-loc td, .sheet-rolltemplate-coc-spell-roll td, .sheet-rolltemplate-coc-one-row-center td {
     padding: 2px;
     border-bottom: 1px solid black;
+    font-size: 13px;
 }
 
-.sheet-rolltemplate-coc-body-hit-loc td, .sheet-rolltemplate-coc-spell-roll td, .sheet-rolltemplate-coc-body-hit-loc td.sheet-template_label, .sheet-rolltemplate-coc-spell-roll td.sheet-template_label, .sheet-rolltemplate-coc-bonus td.sheet-template_value, .sheet-rolltemplate-coc-default td.sheet-template_value, .sheet-rolltemplate-coc-dice-roll td.sheet-template_value, .sheet-rolltemplate-coc-body-hit-loc td.sheet-template_value, .sheet-rolltemplate-coc-attack td.sheet-template_value, .sheet-rolltemplate-coc-attack-bonus td.sheet-template_value, .sheet-rolltemplate-coc-spell-roll td.sheet-template_value, .sheet-rolltemplate-coc-bomadness-rt td.sheet-template_value, .sheet-rolltemplate-coc-bomadness-summ td.sheet-template_value, .sheet-rolltemplate-coc-defence-simple td.sheet-template_value, .sheet-rolltemplate-coc-minionattack td.sheet-template_value, .sheet-rolltemplate-coc-vehicleattack td.sheet-template_value, .sheet-rolltemplate-coc td.sheet-template_value, .sheet-rolltemplate-coc-1 td.sheet-template_value, .sheet-rolltemplate-coc-attack-1 td.sheet-template_value {
+.sheet-rolltemplate-coc-body-hit-loc td, .sheet-rolltemplate-coc-spell-roll td,
+.sheet-rolltemplate-coc-body-hit-loc td.sheet-template_label, .sheet-rolltemplate-coc-spell-roll td.sheet-template_label,
+.sheet-rolltemplate-coc-pulp-bomadness-summ td.sheet-template_value, .sheet-rolltemplate-coc-pulp-bomadness-rt td.sheet-template_value, .sheet-rolltemplate-coc-bonus td.sheet-template_value, .sheet-rolltemplate-coc-default td.sheet-template_value, .sheet-rolltemplate-coc-dice-roll td.sheet-template_value, .sheet-rolltemplate-coc-body-hit-loc td.sheet-template_value, .sheet-rolltemplate-coc-attack td.sheet-template_value, .sheet-rolltemplate-coc-attack-bonus td.sheet-template_value, .sheet-rolltemplate-coc-spell-roll td.sheet-template_value, .sheet-rolltemplate-coc-bomadness-rt td.sheet-template_value, .sheet-rolltemplate-coc-bomadness-summ td.sheet-template_value, .sheet-rolltemplate-coc-defence-simple td.sheet-template_value, .sheet-rolltemplate-coc-minionattack td.sheet-template_value, .sheet-rolltemplate-coc-vehicleattack td.sheet-template_value, .sheet-rolltemplate-coc td.sheet-template_value, .sheet-rolltemplate-coc-1 td.sheet-template_value, .sheet-rolltemplate-coc-attack-1 td.sheet-template_value, .sheet-rolltemplate-coc-one-row-center td.sheet-template_value
+{
     text-align: center;
 }
 
-.sheet-rolltemplate-coc-bonus td.sheet-template_label, .sheet-rolltemplate-coc-default td.sheet-template_label, .sheet-rolltemplate-coc-bomadness-summ td.sheet-template_label, .sheet-rolltemplate-coc-bomadness-rt td.sheet-template_label, .sheet-rolltemplate-coc-dice-roll td.sheet-template_label, .sheet-rolltemplate-coc-attack td.sheet-template_label, .sheet-rolltemplate-coc-attack-bonus td.sheet-template_label, .sheet-rolltemplate-coc-defence-simple td.sheet-template_label, .sheet-rolltemplate-coc-minionattack td.sheet-template_label, .sheet-rolltemplate-coc-vehicleattack td.sheet-template_label, .sheet-rolltemplate-coc td.sheet-template_label, .sheet-rolltemplate-coc-1 td.sheet-template_label, .sheet-rolltemplate-coc-attack-1 td.sheet-template_label, .sheet-rolltemplate-coc-body-hit-loc td.sheet-template_label, .sheet-rolltemplate-coc-spell-roll td.sheet-template_label {
+.sheet-rolltemplate-coc-bonus td.sheet-template_label, .sheet-rolltemplate-coc-default td.sheet-template_label, .sheet-rolltemplate-coc-bomadness-summ td.sheet-template_label, .sheet-rolltemplate-coc-bomadness-rt td.sheet-template_label, .sheet-rolltemplate-coc-pulp-bomadness-summ td.sheet-template_label, .sheet-rolltemplate-coc-pulp-bomadness-rt td.sheet-template_label, .sheet-rolltemplate-coc-dice-roll td.sheet-template_label, .sheet-rolltemplate-coc-attack td.sheet-template_label, .sheet-rolltemplate-coc-attack-bonus td.sheet-template_label, .sheet-rolltemplate-coc-defence-simple td.sheet-template_label, .sheet-rolltemplate-coc-minionattack td.sheet-template_label, .sheet-rolltemplate-coc-vehicleattack td.sheet-template_label, .sheet-rolltemplate-coc td.sheet-template_label, .sheet-rolltemplate-coc-1 td.sheet-template_label, .sheet-rolltemplate-coc-attack-1 td.sheet-template_label, .sheet-rolltemplate-coc-body-hit-loc td.sheet-template_label, .sheet-rolltemplate-coc-spell-roll td.sheet-template_label {
     font-weight: Bold;
 }
 
@@ -904,7 +1029,7 @@ h1.title-text {
     width: 20%;
 }
 
-.sheet-rolltemplate-coc-bonus .inlinerollresult, .sheet-rolltemplate-coc-default .inlinerollresult, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult, .sheet-rolltemplate-coc-dice-roll .inlinerollresult, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult, .sheet-rolltemplate-coc-attack .inlinerollresult, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult, .sheet-rolltemplate-coc-spell-roll .inlinerollresult, .sheet-rolltemplate-coc-defence-simple .inlinerollresult, .sheet-rolltemplate-coc-minionattack .inlinerollresult, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult, .sheet-rolltemplate-coc .inlinerollresult, .sheet-rolltemplate-coc-1 .inlinerollresult, .sheet-rolltemplate-coc-attack-1 .inlinerollresult {
+.sheet-rolltemplate-coc-bonus .inlinerollresult, .sheet-rolltemplate-coc-default .inlinerollresult, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult, .sheet-rolltemplate-coc-pulp-bomadness-summ .inlinerollresult, .sheet-rolltemplate-coc-pulp-bomadness-rt .inlinerollresult, .sheet-rolltemplate-coc-dice-roll .inlinerollresult, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult, .sheet-rolltemplate-coc-attack .inlinerollresult, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult, .sheet-rolltemplate-coc-spell-roll .inlinerollresult, .sheet-rolltemplate-coc-defence-simple .inlinerollresult, .sheet-rolltemplate-coc-minionattack .inlinerollresult, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult, .sheet-rolltemplate-coc .inlinerollresult, .sheet-rolltemplate-coc-1 .inlinerollresult, .sheet-rolltemplate-coc-attack-1 .inlinerollresult {
     display: inline-block;
     min-width: 1.5em;
     text-align: center;
@@ -912,7 +1037,9 @@ h1.title-text {
     background: #BEBEBE;
 }
 
-.sheet-rolltemplate-coc-bonus .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-default .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-attack .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-minionattack .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.fullcrit, .sheet-rolltemplate-coc .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-1 .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-attack-1 .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-bonus .inlinerollresult.fullfail, .sheet-rolltemplate-coc-default .inlinerollresult.fullfail, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.fullfail, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.fullfail, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.fullfail, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.fullfail, .sheet-rolltemplate-coc-attack .inlinerollresult.fullfail, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.fullfail, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.fullfail, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.fullfail, .sheet-rolltemplate-coc-minionattack .inlinerollresult.fullfail, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.fullfail, .sheet-rolltemplate-coc .inlinerollresult.fullfail, .sheet-rolltemplate-coc-1 .inlinerollresult.fullfail, .sheet-rolltemplate-coc-attack-1 .inlinerollresult.fullfail, .sheet-rolltemplate-coc-bonus .inlinerollresult.importantroll, .sheet-rolltemplate-coc-default .inlinerollresult.importantroll, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.importantroll, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.importantroll, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.importantroll, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.importantroll, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.importantroll, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.importantroll, .sheet-rolltemplate-coc-minionattack .inlinerollresult.importantroll, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.importantroll .sheet-rolltemplate-coc .inlinerollresult.importantroll, .sheet-rolltemplate-coc-1 .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack-1 .inlinerollresult.importantroll {
+.sheet-rolltemplate-coc-bonus .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-default .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-pulp-bomadness-summ .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-pulp-bomadness-rt .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-attack .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-minionattack .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.fullcrit, .sheet-rolltemplate-coc .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-1 .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-attack-1 .inlinerollresult.fullcrit,
+.sheet-rolltemplate-coc-bonus .inlinerollresult.fullfail, .sheet-rolltemplate-coc-default .inlinerollresult.fullfail, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.fullfail, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.fullfail, .sheet-rolltemplate-coc-pulp-bomadness-summ .inlinerollresult.fullfail, .sheet-rolltemplate-coc-pulp-bomadness-rt .inlinerollresult.fullfail, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.fullfail, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.fullfail, .sheet-rolltemplate-coc-attack .inlinerollresult.fullfail, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.fullfail, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.fullfail, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.fullfail, .sheet-rolltemplate-coc-minionattack .inlinerollresult.fullfail, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.fullfail, .sheet-rolltemplate-coc .inlinerollresult.fullfail, .sheet-rolltemplate-coc-1 .inlinerollresult.fullfail, .sheet-rolltemplate-coc-attack-1 .inlinerollresult.fullfail,
+.sheet-rolltemplate-coc-bonus .inlinerollresult.importantroll, .sheet-rolltemplate-coc-default .inlinerollresult.importantroll, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.importantroll, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.importantroll, .sheet-rolltemplate-coc-pulp-bomadness-summ .inlinerollresult.importantroll, .sheet-rolltemplate-coc-pulp-bomadness-rt .inlinerollresult.importantroll, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.importantroll, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.importantroll, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.importantroll, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.importantroll, .sheet-rolltemplate-coc-minionattack .inlinerollresult.importantroll, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.importantroll .sheet-rolltemplate-coc .inlinerollresult.importantroll, .sheet-rolltemplate-coc-1 .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack-1 .inlinerollresult.importantroll {
     border: 2px solid black;
     background: #BEBEBE;
 }
