@@ -1,5 +1,5 @@
 <!--
- Call of Cthulhu 7 edition Character Sheet - City Theme
+ Call of Cthulhu 7 edition Character Sheet - City Theme Ver 2.0 (Updated 26.09.20.)
  Made by MR(@MR7RP6 / https://mrtrpg.postype.com/)
  Inspired by Roll20 CoC Legacy Sheet & Tateck(https://tatecks.cafe24.com/)
 -->
@@ -28,21 +28,21 @@
             <img name="attr_character_avatar" src="">
         </div>
         <div class="info-name">
-            <input name="attr_character_name" type="text" value="" placeholder="이름"/>
+            <input name="attr_character_name" type="text" value="" placeholder="이름" spellcheck="false"/>
         </div>
         <div class="info-data grid">
             <strong>플레이어</strong>
-            <input name="attr_player" type="text" value=""/>
+            <input name="attr_player" type="text" value="" spellcheck="false"/>
             <strong>직업</strong>
-            <input name="attr_occupation" type="text" value=""/>
+            <input name="attr_occupation" type="text" value="" spellcheck="false"/>
             <strong>나이</strong>
-            <input name="attr_age" type="text" value=""/>
+            <input name="attr_age" type="text" value="" spellcheck="false"/>
             <strong>성별</strong>
-            <input name="attr_sex" type="text" value=""/>
+            <input name="attr_sex" type="text" value="" spellcheck="false"/>
             <strong>거주지</strong>
-            <input name="attr_residence" type="text" value=""/>
+            <input name="attr_residence" type="text" value="" spellcheck="false"/>
             <strong>출생지</strong>
-            <input name="attr_birthplace" type="text" value=""/>
+            <input name="attr_birthplace" type="text" value="" spellcheck="false"/>
         </div>
     </div>
     <div class="section points-section grid">
@@ -169,8 +169,8 @@
             <h4>펄프 재능</h4>
             <fieldset class="repeating_talents">
                 <div class="grid">
-                    <input class="pulp-talent-input" name="attr_talentname" placeholder="이름" type="text" />
-                    <input class="pulp-talent-input" name="attr_talentdesc" placeholder="설명" type="text" />
+                    <input class="pulp-talent-input" name="attr_talentname" placeholder="이름" type="text" spellcheck="false"/>
+                    <input class="pulp-talent-input" name="attr_talentdesc" placeholder="설명" type="text" spellcheck="false"/>
                     <button class="default-roll" name="pulp_talent" type="roll" value="&{template:coc-dice-roll} {{name=@{talentname}}} {{description=@{talentdesc}}}" />
                 </div>
             </fieldset>
@@ -186,7 +186,7 @@
             <label><button class="default-roll" name="roll_1D12" type="roll" value="&{template:coc-dice-roll} {{name=1D12 굴림}} {{diceroll=[[1D12]]}}"/><span class="nametag"> 1D12</span></label>
             <label><button class="default-roll" name="roll_1D20" type="roll" value="&{template:coc-dice-roll} {{name=1D20 굴림}} {{diceroll=[[1D20]]}}"/><span class="nametag"> 1D20</span></label>
             <label><button class="default-roll" name="roll_1D100" type="roll" value="&{template:coc-dice-roll} {{name=1D100 굴림}} {{diceroll=[[1D100]]}}"/><span class="nametag"> 1D100</span></label>
-            <label><input class="dice-roll-input" name="attr_dice_roll" placeholder="임의" type="text"/><button class="default-roll big-dice" name="roll_custom_roll" type="roll" value="&{template:coc-dice-roll} {{name=@{dice_roll} 굴림}} {{diceroll=[[@{dice_roll}]]}}"/></label>
+            <label><input class="dice-roll-input" name="attr_dice_roll" placeholder="임의" type="text" spellcheck="false"/><button class="default-roll big-dice" name="roll_custom_roll" type="roll" value="&{template:coc-dice-roll} {{name=@{dice_roll} 굴림}} {{diceroll=[[@{dice_roll}]]}}"/></label>
         </div>
     </div>
     <div class="section skill-section">
@@ -491,7 +491,7 @@
                         <fieldset class="repeating_skills">
                             <div class="skill-item">
                                 <input name="attr_checkbox" type="checkbox">
-                                <span class="skill-label"><input class="skill-label-input" name="attr_skillname" placeholder="스킬명" type="text"/></span>
+                                <span class="skill-label"><input class="skill-label-input" name="attr_skillname" placeholder="스킬명" type="text" spellcheck="false"/></span>
                                 <input class="skill-value" name="attr_skill" type="text"/>
                                 <button class="bonus-roll" name="roll_skillname_check" type="roll" value="&{template:coc-bonus} {{name=@{skillname} Roll}} {{success=[[@{skill}]]}} {{hard=[[floor(@{skill}/2)]]}} {{extreme=[[floor(@{skill}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}" name="roll_skill_check"/>
                                 <button class="default-roll" name="roll_skillname_check" type="roll" value="&{template:coc-default} {{name=@{skillname} Roll}} {{success=[[@{skill}]]}} {{hard=[[floor(@{skill}/2)]]}} {{extreme=[[floor(@{skill}/5)]]}} {{roll1=[[1d100]]}}" name="roll_skill_check"/>
@@ -585,7 +585,7 @@
                     <fieldset class="repeating_weapons">
                         <div class="fight-row grid">
                             <div class="fight-weapon">
-                                <input name="attr_weaponname" placeholder="무기명" type="text" value=""/>
+                                <input name="attr_weaponname" placeholder="무기명" type="text" value="" spellcheck="false"/>
                             </div>
                             <div class="fight-dic">
                                 <button class="bonus-roll" name="roll_dodge_check" type="roll" value="&{template:coc-attack-bonus} {{name=@{weaponname}}} {{success=[[@{weaponskill}]]}} {{hard=[[floor(@{weaponskill}/2)]]}} {{extreme=[[floor(@{weaponskill}/5)]]}} {{malf=@{weaponmalf}}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}} {{damage=[[@{weapondamage}@{weapondb}]]}}"/>
@@ -613,16 +613,16 @@
                                 </select>
                             </div>
                             <div class="fight-dir">
-                                <input name="attr_weaponrange" placeholder="-" type="text" value=""/>
+                                <input name="attr_weaponrange" placeholder="-" type="text" value="" spellcheck="false"/>
                             </div>
                             <div class="fight-count">
-                                <input name="attr_weaponattacks" placeholder="-" type="text" value=""/>
+                                <input name="attr_weaponattacks" placeholder="-" type="text" value="" spellcheck="false"/>
                             </div>
                             <div class="fight-bullet">
-                                <input name="attr_weaponammo" placeholder="-" type="text" value=""/>
+                                <input name="attr_weaponammo" placeholder="-" type="text" value="" spellcheck="false"/>
                             </div>
                             <div class="fight-fix">
-                                <input name="attr_weaponmalf" placeholder="-" type="text" value=""/>
+                                <input name="attr_weaponmalf" placeholder="-" type="text" value="" spellcheck="false"/>
                             </div>
                         </div>
                     </fieldset>
@@ -635,21 +635,21 @@
                             <fieldset class="repeating_spells">
                                 <div class="margin-top spell-header">
                                     <input class="expand-spell expand" name="attr_spell_expansion" type="checkbox" value="1"/>
-                                    <input class="skill-name-input input-title" type="text" name="attr_spellname" placeholder="주문 이름"/>
+                                    <input class="skill-name-input input-title" type="text" name="attr_spellname" placeholder="주문 이름" spellcheck="false"/>
                                     <button class="default-roll" type="roll" value="&{template:coc-spell-roll} {{name=@{spellname}}} {{spellcost-san=[[@{spellcost-san}]]}} {{spellcost-mp=[[@{spellcost-mp}]]}} {{spellcastime=@{spellcastime}}} {{description=@{spelldescription}}} "></button>
                                 </div>
                                 <input class="expand-spell" name="attr_spell_expansion" type="hidden"/>
                                 <div class="spell-expansion">
                                     <div class="grid-container grid">
                                         <strong class="grid-item">비용 - 이성</strong>
-                                        <input class="grid-item skill-input" type="text" name="attr_spellcost-san" placeholder="예) 1d6"/>
+                                        <input class="grid-item skill-input" type="text" name="attr_spellcost-san" placeholder="예) 1d6" spellcheck="false"/>
                                         <strong class="grid-item">비용 - 마력</strong>
-                                        <input class="grid-item skill-input" type="text" name="attr_spellcost-mp" placeholder="예) 3"/>
+                                        <input class="grid-item skill-input" type="text" name="attr_spellcost-mp" placeholder="예) 3" spellcheck="false"/>
                                         <strong class="grid-item">시전시간</strong>
-                                        <input class="grid-item skill-input" type="text" name="attr_spellcastime" placeholder="예) 1"/>
+                                        <input class="grid-item skill-input" type="text" name="attr_spellcastime" placeholder="예) 1" spellcheck="false"/>
                                     </div>
                                     <div>
-                                        <textarea name="attr_spelldescription" placeholder="설명"></textarea>
+                                        <textarea name="attr_spelldescription" placeholder="설명" spellcheck="false"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -657,10 +657,10 @@
                         <input type="hidden" class="check-toggle-simple-armor" name="attr_togglesimplearmor">
                         <div id="simple-armor-section" class="toggle-section">
                             <div class="grid-container grid">
-                                <input class="grid-item skill-label-input" type="text" name="attr_head_simplearmor" placeholder="머리 방어구명"/>
+                                <input class="grid-item skill-label-input" type="text" name="attr_head_simplearmor" placeholder="머리 방어구명" spellcheck="false"/>
                                 <input class="grid-item skill-label-input" type="text" name="attr_head_simplearmordefence" value="0"/>
                                 <button class="default-roll" type="roll" value="&{template:coc-defence-simple} {{name=@{head_simplearmor}}} {{defence=[[@{head_simplearmordefence}]]}}" name="roll_head_simplearmor_defence"/>
-                                <input class="grid-item skill-label-input" type="text" name="attr_body_simplearmor" placeholder="몸 방어구명"/>
+                                <input class="grid-item skill-label-input" type="text" name="attr_body_simplearmor" placeholder="몸 방어구명" spellcheck="false"/>
                                 <input class="grid-item skill-label-input" type="text" name="attr_body_simplearmordefence" value="0"/>
                                 <button class="default-roll" type="roll" value="&{template:coc-defence-simple} {{name=@{body_simplearmor}}} {{defence=[[@{body_simplearmordefence}]]}}" name="roll_body_simplearmor_defence"/>
                             </div>
@@ -671,7 +671,7 @@
                                 <div></div>
                                 <div class="grid-item grid">
                                     <strong>머리</strong>
-                                    <input class="skill-label-input" type="text" name="attr_head_armor" placeholder="방어구명"/>
+                                    <input class="skill-label-input" type="text" name="attr_head_armor" placeholder="방어구명" spellcheck="false"/>
                                     <input class="skill-label-input" type="text" name="attr_head_armordefence" value="0"/>
                                     <button class="default-roll" type="roll" value="&{template:coc-defence-simple} {{name=@{head_armor}}} {{defence=[[@{head_armordefence}]]}}" name="roll_head_armor_defence"/>
                                 </div>
@@ -680,19 +680,19 @@
                             <div class="grid-container grid">
                                 <div class="grid-item grid">
                                     <strong>왼팔</strong>
-                                    <input class="skill-label-input" type="text" name="attr_l_arm_armor" placeholder="방어구명"/>
+                                    <input class="skill-label-input" type="text" name="attr_l_arm_armor" placeholder="방어구명" spellcheck="false"/>
                                     <input class="skill-label-input" type="text" name="attr_l_arm_armordefence" value="0"/>
                                     <button class="default-roll" type="roll" value="&{template:coc-defence-simple} {{name=@{l_arm_armor}}} {{defence=[[@{l_arm_armordefence}]]}}" name="roll_l_arm_armor_defence"/>
                                 </div>
                                 <div class="grid-item grid">
                                     <strong>가슴</strong>
-                                    <input class="skill-label-input" type="text" name="attr_chest_armor" placeholder="방어구명"/>
+                                    <input class="skill-label-input" type="text" name="attr_chest_armor" placeholder="방어구명" spellcheck="false"/>
                                     <input class="skill-label-input" type="text" name="attr_chest_armordefence" value="0"/>
                                     <button class="default-roll" type="roll" value="&{template:coc-defence-simple} {{name=@{chest_armor}}} {{defence=[[@{chest_armordefence}]]}}" name="roll_chest_armor_defence"/>
                                 </div>
                                 <div class="grid-item grid">
                                     <strong>오른팔</strong>
-                                    <input class="skill-label-input" type="text" name="attr_r_arm_armor" placeholder="방어구명"/>
+                                    <input class="skill-label-input" type="text" name="attr_r_arm_armor" placeholder="방어구명" spellcheck="false"/>
                                     <input class="skill-label-input" type="text" name="attr_r_arm_armordefence" value="0"/>
                                     <button class="default-roll" type="roll" value="&{template:coc-defence-simple} {{name=@{r_arm_armor}}} {{defence=[[@{r_arm_armordefence}]]}}" name="roll_r_arm_armor_defence"/>
                                 </div>
@@ -700,19 +700,19 @@
                             <div class="grid-container grid">
                                 <div class="grid-item grid">
                                     <strong>왼다리</strong>
-                                    <input class="skill-label-input" type="text" name="attr_l_leg_armor" placeholder="방어구명"/>
+                                    <input class="skill-label-input" type="text" name="attr_l_leg_armor" placeholder="방어구명" spellcheck="false"/>
                                     <input class="skill-label-input" type="text" name="attr_l_leg_armordefence" value="0"/>
                                     <button class="default-roll" type="roll" value="&{template:coc-defence-simple} {{name=@{l_leg_armor}}} {{defence=[[@{l_leg_armordefence}]]}}" name="roll_l_leg_armor_defence"/>
                                 </div>
                                 <div class="grid-item grid">
                                     <strong>복부</strong>
-                                    <input class="skill-label-input" type="text" name="attr_abdmn_armor" placeholder="방어구명"/>
+                                    <input class="skill-label-input" type="text" name="attr_abdmn_armor" placeholder="방어구명" spellcheck="false"/>
                                     <input class="skill-label-input" type="text" name="attr_abdmn_armordefence" value="0"/>
                                     <button class="default-roll" type="roll" value="&{template:coc-defence-simple} {{name=@{abdmn_armor}}} {{defence=[[@{abdmn_armordefence}]]}}" name="roll_abdmn_armor_defence"/>
                                 </div>
                                 <div class="grid-item grid">
                                     <strong>오른다리</strong>
-                                    <input class="skill-label-input" type="text" name="attr_r_leg_armor" placeholder="방어구명"/>
+                                    <input class="skill-label-input" type="text" name="attr_r_leg_armor" placeholder="방어구명" spellcheck="false"/>
                                     <input class="skill-label-input" type="text" name="attr_r_leg_armordefence" value="0"/>
                                     <button class="default-roll" type="roll" value="&{template:coc-defence-simple} {{name=@{r_leg_armor}}} {{defence=[[@{r_leg_armordefence}]]}}" name="roll_r_leg_armor_defence"/>
                                 </div>
@@ -746,19 +746,18 @@
                         <div class="grid-container">
                             <h4>장비와 소지품</h4>
                             <div class="grid-item flex">
-                                <textarea name="attr_gear_and_posessions"></textarea>
-                                <textarea name="attr_gear_and_posessions1"></textarea>
+                                <textarea name="attr_gear_and_posessions" spellcheck="false"></textarea>
+                                <textarea name="attr_gear_and_posessions1" spellcheck="false"></textarea>
                             </div>
                         </div>
                         <div class="grid-container">
                             <h4>현금과 자산</h4>
                             <div class="grid-item grid">
                                 <div><strong>소비 수준</strong></div>
-                                <div><input type="text"></div>
+                                <div><input type="text" spellcheck="false"></div>
                                 <div><strong>현금</strong></div>
-                                <div><input type="text"></div>
-                                <div><strong class="backstory-label">자산</strong><textarea
-                                        class="backpack-box"></textarea>
+                                <div><input type="text" spellcheck="false"></div>
+                                <div><strong class="backstory-label">자산</strong><textarea class="backpack-box" spellcheck="false"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -767,45 +766,45 @@
                         <div class="grid-container flex">
                             <div>
                                 <strong class="backstory-label">겉보기</strong>
-                                <textarea class="backstory-box" name="attr_personal_description"></textarea>
+                                <textarea class="backstory-box" name="attr_personal_description" spellcheck="false"></textarea>
                             </div>
                             <div>
                                 <strong class="backstory-label">사상/신념</strong>
-                                <textarea class="backstory-box" name="attr_ideaology_beliefs"></textarea>
+                                <textarea class="backstory-box" name="attr_ideaology_beliefs" spellcheck="false"></textarea>
                             </div>
                             <div>
                                 <strong class="backstory-label">중요한 사람들</strong>
-                                <textarea class="backstory-box" name="attr_significant_people"></textarea>
+                                <textarea class="backstory-box" name="attr_significant_people" spellcheck="false"></textarea>
                             </div>
                             <div>
                                 <strong class="backstory-label">의미 있는 장소들</strong>
-                                <textarea class="backstory-box" name="attr_meaningful_locations"></textarea>
+                                <textarea class="backstory-box" name="attr_meaningful_locations" spellcheck="false"></textarea>
                             </div>
                             <div>
                                 <strong class="backstory-label">소중한 물건들</strong>
-                                <textarea class="backstory-box" name="attr_treasured_posessions"></textarea>
+                                <textarea class="backstory-box" name="attr_treasured_posessions" spellcheck="false"></textarea>
                             </div>
                         </div>
                         <div class="grid-container flex">
                             <div>
                                 <strong class="backstory-label">성격</strong>
-                                <textarea class="backstory-box" name="attr_traits"></textarea>
+                                <textarea class="backstory-box" name="attr_traits" spellcheck="false"></textarea>
                             </div>
                             <div>
                                 <strong class="backstory-label">부상과 흉터</strong>
-                                <textarea class="backstory-box" name="attr_injuries_scars"></textarea>
+                                <textarea class="backstory-box" name="attr_injuries_scars" spellcheck="false"></textarea>
                             </div>
                             <div>
                                 <strong class="backstory-label">공포증과 집착증</strong>
-                                <textarea class="backstory-box" name="attr_phobias_manias"></textarea>
+                                <textarea class="backstory-box" name="attr_phobias_manias" spellcheck="false"></textarea>
                             </div>
                             <div>
                                 <strong class="backstory-label">신화서, 주문, 유물</strong>
-                                <textarea class="backstory-box" name="attr_tomes_spells_artifacts"></textarea>
+                                <textarea class="backstory-box" name="attr_tomes_spells_artifacts" spellcheck="false"></textarea>
                             </div>
                             <div>
                                 <strong class="backstory-label">기이한 존재들과의 만남</strong>
-                                <textarea class="backstory-box" name="attr_encounters_with_strange_entities"></textarea>
+                                <textarea class="backstory-box" name="attr_encounters_with_strange_entities" spellcheck="false"></textarea>
                             </div>
                         </div>
                     </div>
@@ -813,16 +812,16 @@
                 <div id="downtime-section">
                     <fieldset class="repeating_downtime">
                         <div class="senario-name">
-                            <input class="input-title" type="text" name="attr_scenario_name"  placeholder="시나리오 이름 입력">
+                            <input class="input-title" type="text" name="attr_scenario_name" placeholder="시나리오 이름 입력" spellcheck="false">
                         </div>
                         <div class="grid-container grid">
                             <div>
                                 <strong class="backstory-label">결론 & 정보</strong>
-                                <textarea name="attr_scenario_info"></textarea>
+                                <textarea name="attr_scenario_info" spellcheck="false"></textarea>
                             </div>
                             <div>
                                 <strong class="backstory-label">보상</strong>
-                                <textarea name="attr_scenario_rewards"></textarea>
+                                <textarea name="attr_scenario_rewards" spellcheck="false"></textarea>
                             </div>
                         </div>
                         <hr>
@@ -832,37 +831,37 @@
                     <fieldset class="repeating_minion">
                         <div class="grid-container margin-top">
                             <div class="grid minion-name">
-                                <input type="text" name="attr_minion_name" class="input-title" placeholder="조력자 이름 입력"/>
+                                <input type="text" name="attr_minion_name" class="input-title" placeholder="조력자 이름 입력" spellcheck="false"/>
                             </div>
                             <div class="grid minion-stat">
                                 <strong class="backstory-label">근력</strong>
-                                <input class="skill-label-input" type="text" name="attr_minionattr1"/>
+                                <input class="skill-label-input" type="text" name="attr_minionattr1" spellcheck="false"/>
                                 <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 근력 판정}} {{success=[[@{minionattr1}]]}} {{hard=[[floor(@{minionattr1}/2)]]}} {{extreme=[[floor(@{minionattr1}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionattr1_check"/>
                                 <strong class="backstory-label">건강</strong>
-                                <input class="skill-label-input" type="text" name="attr_minionattr2"/>
+                                <input class="skill-label-input" type="text" name="attr_minionattr2" spellcheck="false"/>
                                 <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 건강 판정}} {{success=[[@{minionattr2}]]}} {{hard=[[floor(@{minionattr2}/2)]]}} {{extreme=[[floor(@{minionattr2}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionattr2_check"/>
                                 <strong class="backstory-label">크기</strong>
-                                <input class="skill-label-input" type="text" name="attr_minionattr3"/>
+                                <input class="skill-label-input" type="text" name="attr_minionattr3" spellcheck="false"/>
                                 <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 크기 판정}} {{success=[[@{minionattr3}]]}} {{hard=[[floor(@{minionattr3}/2)]]}} {{extreme=[[floor(@{minionattr3}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionattr3_check"/>
                                 <strong class="backstory-label">민첩</strong>
-                                <input class="skill-label-input" type="text" name="attr_minionattr5"/>
+                                <input class="skill-label-input" type="text" name="attr_minionattr5" spellcheck="false"/>
                                 <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 민첩 판정}} {{success=[[@{minionattr5}]]}} {{hard=[[floor(@{minionattr5}/2)]]}} {{extreme=[[floor(@{minionattr5}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionattr5_check"/>
                                 <strong class="backstory-label">지능</strong>
-                                <input class="skill-label-input" type="text" name="attr_minionattr6"/>
+                                <input class="skill-label-input" type="text" name="attr_minionattr6" spellcheck="false"/>
                                 <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 지능 판정}} {{success=[[@{minionattr6}]]}} {{hard=[[floor(@{minionattr6}/2)]]}} {{extreme=[[floor(@{minionattr6}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionattr6_check"/>
                             </div>
                             <div class="grid minion-stat">
                                 <strong class="backstory-label">외모</strong>
-                                <input class="skill-label-input" type="text" name="attr_minionattr4"/>
+                                <input class="skill-label-input" type="text" name="attr_minionattr4" spellcheck="false"/>
                                 <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 외모 판정}} {{success=[[@{minionattr4}]]}} {{hard=[[floor(@{minionattr4}/2)]]}} {{extreme=[[floor(@{minionattr4}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionattr4_check"/>
                                 <strong class="backstory-label">정신</strong>
-                                <input class="skill-label-input" type="text" name="attr_minionattr7"/>
+                                <input class="skill-label-input" type="text" name="attr_minionattr7" spellcheck="false"/>
                                 <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 정신력 판정}} {{success=[[@{minionattr7}]]}} {{hard=[[floor(@{minionattr7}/2)]]}} {{extreme=[[floor(@{minionattr7}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionattr7_check"/>
                                 <strong class="backstory-label">교육</strong>
-                                <input class="skill-label-input" type="text" name="attr_minionattr8"/>
+                                <input class="skill-label-input" type="text" name="attr_minionattr8" spellcheck="false"/>
                                 <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 교육 판정}} {{success=[[@{minionattr8}]]}} {{hard=[[floor(@{minionattr8}/2)]]}} {{extreme=[[floor(@{minionattr8}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionattr8_check"/>
                                 <strong class="backstory-label">이성</strong>
-                                <input class="skill-label-input" type="text" name="attr_minion_san_roll"/>
+                                <input class="skill-label-input" type="text" name="attr_minion_san_roll" spellcheck="false"/>
                                 <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 이성 판정}} {{success=[[@{minion_san_roll}]]}} {{hard=[[floor(@{minion_san_roll}/2)]]}} {{extreme=[[floor(@{minion_san_roll}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minion_san_roll_check"/>
                                 <strong class="backstory-label">체력</strong>
                                 <div class="grid-item">
@@ -892,76 +891,76 @@
                             <div class="grid minion-skill-container">
                                 <div>
                                     <div class="grid minion-weapon">
-                                        <input class="skill-label-input" type="text" name="attr_minionweapon1" placeholder="무기 1"/>
-                                        <input class="skill-label-input" type="text" name="attr_minionattack1" placeholder="수치"/>
-                                        <input class="skill-label-input" type="text" name="attr_miniondamage1" placeholder="피해+DB"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionweapon1" placeholder="무기 1" spellcheck="false" />
+                                        <input class="skill-label-input" type="text" name="attr_minionattack1" placeholder="수치" spellcheck="false" />
+                                        <input class="skill-label-input" type="text" name="attr_miniondamage1" placeholder="피해+DB" spellcheck="false" />
                                         <button class="default-roll" type="roll" value="&{template:coc-minionattack} {{name=@{minion_name}의 @{minionweapon1} 공격}} {{success=[[@{minionattack1}]]}} {{hard=[[floor(@{minionattack1}/2)]]}} {{extreme=[[floor(@{minionattack1}/5)]]}} {{roll1=[[1d100]]}} {{damage=[[@{miniondamage1}]]}}" name="roll_miniondamage1"/>
                                     </div>
                                     <div class="grid minion-weapon">
-                                        <input class="skill-label-input" type="text" name="attr_minionweapon2" placeholder="무기 2"/>
-                                        <input class="skill-label-input" type="text" name="attr_minionattack2" placeholder="수치"/>
-                                        <input class="skill-label-input" type="text" name="attr_miniondamage2" placeholder="피해+DB"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionweapon2" placeholder="무기 2" spellcheck="false" />
+                                        <input class="skill-label-input" type="text" name="attr_minionattack2" placeholder="수치" spellcheck="false" />
+                                        <input class="skill-label-input" type="text" name="attr_miniondamage2" placeholder="피해+DB" spellcheck="false" />
                                         <button class="default-roll" type="roll" value="&{template:coc-minionattack} {{name=@{minion_name}의 @{minionweapon2} 공격}} {{success=[[@{minionattack2}]]}} {{hard=[[floor(@{minionattack2}/2)]]}} {{extreme=[[floor(@{minionattack2}/5)]]}} {{roll1=[[1d100]]}} {{damage=[[@{miniondamage2}]]}}" name="roll_miniondamage2"/>
                                     </div>
                                     <div class="grid minion-weapon">
-                                        <input class="skill-label-input" type="text" name="attr_minionweapon3" placeholder="무기 3"/>
-                                        <input class="skill-label-input" type="text" name="attr_minionattack3" placeholder="수치"/>
-                                        <input class="skill-label-input" type="text" name="attr_miniondamage3" placeholder="피해+DB"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionweapon3" placeholder="무기 3" spellcheck="false" />
+                                        <input class="skill-label-input" type="text" name="attr_minionattack3" placeholder="수치" spellcheck="false" />
+                                        <input class="skill-label-input" type="text" name="attr_miniondamage3" placeholder="피해+DB" spellcheck="false" />
                                         <button class="default-roll" type="roll" value="&{template:coc-minionattack} {{name=@{minion_name}의 @{minionweapon3} 공격}} {{success=[[@{minionattack3}]]}} {{hard=[[floor(@{minionattack3}/2)]]}} {{extreme=[[floor(@{minionattack3}/5)]]}} {{roll1=[[1d100]]}} {{damage=[[@{miniondamage3}]]}}" name="roll_miniondamage3"/>
                                     </div>
                                     <div class="grid minion-weapon">
-                                        <input class="skill-label-input" type="text" name="attr_minionweapon4" placeholder="무기 4"/>
-                                        <input class="skill-label-input" type="text" name="attr_minionattack4" placeholder="수치"/>
-                                        <input class="skill-label-input" type="text" name="attr_miniondamage4" placeholder="피해+DB"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionweapon4" placeholder="무기 4" spellcheck="false" />
+                                        <input class="skill-label-input" type="text" name="attr_minionattack4" placeholder="수치" spellcheck="false" />
+                                        <input class="skill-label-input" type="text" name="attr_miniondamage4" placeholder="피해+DB" spellcheck="false" />
                                         <button class="default-roll" type="roll" value="&{template:coc-minionattack} {{name=@{minion_name}의 @{minionweapon4} 공격}} {{success=[[@{minionattack4}]]}} {{hard=[[floor(@{minionattack4}/2)]]}} {{extreme=[[floor(@{minionattack4}/5)]]}} {{roll1=[[1d100]]}} {{damage=[[@{miniondamage4}]]}}" name="roll_miniondamage4"/>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="grid minion-skill">
-                                        <input class="skill-label-input" type="text" name="attr_minionskill1name" placeholder="기능 1"/>
-                                        <input class="skill-label-input" type="text" name="attr_minionskill1" placeholder="수치"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionskill1name" placeholder="기능 1" spellcheck="false" />
+                                        <input class="skill-label-input" type="text" name="attr_minionskill1" placeholder="수치" spellcheck="false" />
                                         <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 @{minionskill1name} 판정}} {{success=[[@{minionskill1}]]}} {{hard=[[floor(@{minionskill1}/2)]]}} {{extreme=[[floor(@{minionskill1}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionskill1_check"/>
                                     </div>
                                     <div class="grid minion-skill">
-                                        <input class="skill-label-input" type="text" name="attr_minionskill2name" placeholder="기능 2"/>
-                                        <input class="skill-label-input" type="text" name="attr_minionskill2" placeholder="수치"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionskill2name" placeholder="기능 2" spellcheck="false" />
+                                        <input class="skill-label-input" type="text" name="attr_minionskill2" placeholder="수치" spellcheck="false" />
                                         <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 @{minionskill2name} 판정}} {{success=[[@{minionskill2}]]}} {{hard=[[floor(@{minionskill2}/2)]]}} {{extreme=[[floor(@{minionskill2}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionskill2_check"/>
                                     </div>
                                     <div class="grid minion-skill">
-                                        <input class="skill-label-input" type="text" name="attr_minionskill3name" placeholder="기능 3"/>
-                                        <input class="skill-label-input" type="text" name="attr_minionskill3" placeholder="수치"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionskill3name" placeholder="기능 3" spellcheck="false" />
+                                        <input class="skill-label-input" type="text" name="attr_minionskill3" placeholder="수치" spellcheck="false" />
                                         <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 @{minionskill3name} 판정}} {{success=[[@{minionskill3}]]}} {{hard=[[floor(@{minionskill3}/2)]]}} {{extreme=[[floor(@{minionskill3}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionskill3_check"/>
                                     </div>
                                     <div class="grid minion-skill">
-                                        <input class="skill-label-input" type="text" name="attr_minionskill4name" placeholder="기능 4"/>
-                                        <input class="skill-label-input" type="text" name="attr_minionskill4" placeholder="수치"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionskill4name" placeholder="기능 4" spellcheck="false" />
+                                        <input class="skill-label-input" type="text" name="attr_minionskill4" placeholder="수치" spellcheck="false" />
                                         <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 @{minionskill4name} 판정}} {{success=[[@{minionskill4}]]}} {{hard=[[floor(@{minionskill4}/2)]]}} {{extreme=[[floor(@{minionskill4}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionskill4_check"/>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="grid minion-skill">
-                                        <input class="skill-label-input" type="text" name="attr_minionskill5name" placeholder="기능 5"/>
-                                        <input class="skill-label-input" type="text" name="attr_minionskill5" placeholder="수치"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionskill5name" placeholder="기능 5" spellcheck="false"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionskill5" placeholder="수치" spellcheck="false"/>
                                         <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 @{minionskill5name} 판정}} {{success=[[@{minionskill5}]]}} {{hard=[[floor(@{minionskill5}/2)]]}} {{extreme=[[floor(@{minionskill5}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionskill5_check"/>
                                     </div>
                                     <div class="grid minion-skill">
-                                        <input class="skill-label-input" type="text" name="attr_minionskill6name" placeholder="기능 6"/>
-                                        <input class="skill-label-input" type="text" name="attr_minionskill6" placeholder="수치"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionskill6name" placeholder="기능 6" spellcheck="false"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionskill6" placeholder="수치" spellcheck="false"/>
                                         <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 @{minionskill6name} 판정}} {{success=[[@{minionskill6}]]}} {{hard=[[floor(@{minionskill6}/2)]]}} {{extreme=[[floor(@{minionskill6}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionskill6_check"/>
                                     </div>
                                     <div class="grid minion-skill">
-                                        <input class="skill-label-input" type="text" name="attr_minionskill7name" placeholder="기능 7"/>
-                                        <input class="skill-label-input" type="text" name="attr_minionskill7" placeholder="수치"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionskill7name" placeholder="기능 7" spellcheck="false"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionskill7" placeholder="수치" spellcheck="false"/>
                                         <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 @{minionskill7name} 판정}} {{success=[[@{minionskill7}]]}} {{hard=[[floor(@{minionskill7}/2)]]}} {{extreme=[[floor(@{minionskill7}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionskill7_check"/>
                                     </div>
                                     <div class="grid minion-skill">
-                                        <input class="skill-label-input" type="text" name="attr_minionskill8name" placeholder="기능 8"/>
-                                        <input class="skill-label-input" type="text" name="attr_minionskill8" placeholder="수치"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionskill8name" placeholder="기능 8" spellcheck="false"/>
+                                        <input class="skill-label-input" type="text" name="attr_minionskill8" placeholder="수치" spellcheck="false"/>
                                         <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{minion_name}의 @{minionskill8name} 판정}} {{success=[[@{minionskill8}]]}} {{hard=[[floor(@{minionskill8}/2)]]}} {{extreme=[[floor(@{minionskill8}/5)]]}} {{roll1=[[1d100]]}}" name="roll_minionskill8_check"/>
                                     </div>
                                 </div>
                             </div>
-                            <textarea name="attr_minion_desc" placeholder="메모"/>
+                            <textarea name="attr_minion_desc" placeholder="메모" spellcheck="false"/>
                         </div>
                         <hr>
                     </fieldset>
@@ -969,36 +968,36 @@
                 <div id="vehicle-section">
                     <fieldset class="repeating_vehicle">
                         <div class="grid vehicle-name margin-top">
-                            <input type="text" name="attr_vehicle_name" class="input-title" placeholder="탈것 이름 입력"/>
+                            <input type="text" name="attr_vehicle_name" class="input-title" placeholder="탈것 이름 입력" spellcheck="false" />
                         </div>
                         <div class="grid vehicle-stat">
                             <strong class="backstory-label">이동력</strong>
-                            <input class="skill-label-input" type="text" name="attr_vehiclemove"/>
+                            <input class="skill-label-input" type="text" name="attr_vehiclemove" spellcheck="false" />
                             <strong class="backstory-label">체구</strong>
-                            <input class="skill-label-input" type="text" name="attr_vehiclebuild" placeholder="현재"/>
+                            <input class="skill-label-input" type="text" name="attr_vehiclebuild" placeholder="현재" spellcheck="false" />
                             <span>/</span>
-                            <input class="skill-label-input" type="text" name="attr_vehiclebuildmax" placeholder="최대"/>
+                            <input class="skill-label-input" type="text" name="attr_vehiclebuildmax" placeholder="최대" spellcheck="false" />
                             <strong class="backstory-label">장갑</strong>
-                            <input class="skill-label-input" type="text" name="attr_vehiclearmor"/>
+                            <input class="skill-label-input" type="text" name="attr_vehiclearmor" spellcheck="false" />
                             <strong class="backstory-label">승객</strong>
-                            <input class="skill-label-input" type="text" name="attr_vehiclecap"/>
+                            <input class="skill-label-input" type="text" name="attr_vehiclecap" spellcheck="false" />
                         </div>
                         <div class="grid vehicle-grid-container">
                             <div>
                                 <div class="grid vehicle-skill">
-                                    <input class="skill-label-input" type="text" name="attr_operatorskillname1" placeholder="조종사의 조종기능"/>
-                                    <input class="skill-label-input" type="text" name="attr_operatorskill1" placeholder="수치"/>
+                                    <input class="skill-label-input" type="text" name="attr_operatorskillname1" placeholder="조종사의 조종기능" spellcheck="false"/>
+                                    <input class="skill-label-input" type="text" name="attr_operatorskill1" placeholder="수치" spellcheck="false"/>
                                     <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{vehicle_name} @{operatorskillname1}판정}} {{success=[[@{operatorskill1}]]}} {{hard=[[floor(@{operatorskill1}/2)]]}} {{extreme=[[floor(@{operatorskill1}/5)]]}} {{roll1=[[1d100]]}}" name="roll_operatorskill_check2"/>
                                 </div>
                                 <div class="grid vehicle-skill">
-                                    <input class="skill-label-input" type="text" name="attr_operatorskillname2" placeholder="기능"/>
-                                    <input class="skill-label-input" type="text" name="attr_operatorskill2" placeholder="수치"/>
+                                    <input class="skill-label-input" type="text" name="attr_operatorskillname2" placeholder="기능" spellcheck="false"/>
+                                    <input class="skill-label-input" type="text" name="attr_operatorskill2" placeholder="수치" spellcheck="false"/>
                                     <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{vehicle_name} @{operatorskillname2}판정}} {{success=[[@{operatorskill2}]]}} {{hard=[[floor(@{operatorskill2}/2)]]}} {{extreme=[[floor(@{operatorskill2}/5)]]}} {{roll1=[[1d100]]}}" name="roll_operatorskill_check1"/>
                                 </div>
                                 <div class="grid vehicle-skill">
-                                    <input class="skill-label-input" type="text" name="attr_vehicleweaponname" placeholder="탑재 무기명"/>
-                                    <input class="skill-label-input" type="text" name="attr_vehicleweaponskill" placeholder="수치"/>
-                                    <input class="skill-label-input" type="text" name="attr_vehicleweapondamage" placeholder="피해"/>
+                                    <input class="skill-label-input" type="text" name="attr_vehicleweaponname" placeholder="탑재 무기명" spellcheck="false"/>
+                                    <input class="skill-label-input" type="text" name="attr_vehicleweaponskill" placeholder="수치" spellcheck="false"/>
+                                    <input class="skill-label-input" type="text" name="attr_vehicleweapondamage" placeholder="피해" spellcheck="false"/>
                                     <button class="default-roll" type="roll" value="&{template:coc-minionattack} {{name=@{vehicle_name}의 @{vehicleweaponname}}} {{success=[[@{vehicleweaponskill}]]}} {{hard=[[floor(@{vehicleweaponskill}/2)]]}} {{extreme=[[floor(@{vehicleweaponskill}/5)]]}} {{roll1=[[1d100]]}} {{damage=[[@{vehicleweapondamage}]]}}" name="roll_vehicleweaponattack"/>
                                 </div>
                                 <div class="grid vehicle-skill">
@@ -1007,7 +1006,7 @@
                                 </div>
                             </div>
                             <div>
-                                <textarea name="attr_vehicle_stats_info" placeholder="일반 정보"></textarea>
+                                <textarea name="attr_vehicle_stats_info" placeholder="일반 정보" spellcheck="false"></textarea>
                             </div>
                         </div>
                         <hr>
