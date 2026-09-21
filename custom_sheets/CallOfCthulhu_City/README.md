@@ -10,7 +10,7 @@ Ver 2.0.0
 * CoC_city.html : html 파일
 
 ## 미리보기
-<img src="https://i.ibb.co/CMBd6XQ/sheet-preview-min.png" height="400">
+<img src="https://i.imgur.com/V77f4g2.png" height="400">
 
 ## 사용방법
 1. 세션 방 메인화면의 [설정]→[게임 설정]페이지로 들어갑니다.
