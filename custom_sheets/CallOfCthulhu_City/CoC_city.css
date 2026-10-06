@@ -1,15 +1,8 @@
-@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+@import url('https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css');
 
 @font-face {
     font-family: 'GongGothicMedium';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'JalnanGothic';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -31,7 +24,6 @@
 /* 공통 */
 :root {
     --sheet-font-input: 'GongGothicMedium';
-    --sheet-font-nametag: 'JalnanGothic';
     --sheet-font-normal: 'nanumsquare';
     --sheet-color-point: #007500;
 }
@@ -85,10 +77,6 @@ input[type='number'] {
     transform: translate(1px, 1px);
 }
 
-.ui-dialog .charsheet div:not(:has(label)) button[type=roll]:hover {
-    transform: translate(1px, 1px);
-}
-
 .ui-dialog .charsheet label {
     font-family: var(--sheet-font-normal);
     font-size: 13px;
@@ -123,7 +111,7 @@ input[type='number'] {
     font-size: 12px;
 }
 
-.ui-dialog .charsheet input[type=number]:read-only, .ui-dialog .charsheet input[type=number]:read-only {
+.ui-dialog .charsheet input[type=number]:read-only, .ui-dialog .charsheet input[type=text]:read-only {
     color: #4b4b4b;
     background-color: rgba(0, 0, 0, 0.1);
 }
@@ -142,7 +130,7 @@ input[type='number'] {
 }
 
 .ui-dialog .charsheet textarea:hover {
-    background-color: rgb(255 249 232 / 90%);;
+    background-color: rgb(255 249 232 / 90%);
 }
 
 .ui-dialog .charsheet select {
@@ -323,10 +311,6 @@ h1.title-text {
 label.btn-config:hover,
 .config-section label:hover {
     transform: none !important;
-}
-
-.ui-dialog .charsheet input:hover {
-    background-color: transparent !important
 }
 
 .charsheet span.pictos::after { /*Close Config*/
@@ -956,7 +940,6 @@ div.pulp-talent-section {
 
 #vehicle-section .vehicle-grid-container .vehicle-skill:nth-child(3) {
     grid-template-columns: 3fr 1fr 1fr 30px;
-    margin-inside: 5px;
     justify-items: center;
 }
 
@@ -1039,7 +1022,7 @@ div.pulp-talent-section {
 
 .sheet-rolltemplate-coc-bonus .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-default .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-pulp-bomadness-summ .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-pulp-bomadness-rt .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-attack .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-minionattack .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.fullcrit, .sheet-rolltemplate-coc .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-1 .inlinerollresult.fullcrit, .sheet-rolltemplate-coc-attack-1 .inlinerollresult.fullcrit,
 .sheet-rolltemplate-coc-bonus .inlinerollresult.fullfail, .sheet-rolltemplate-coc-default .inlinerollresult.fullfail, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.fullfail, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.fullfail, .sheet-rolltemplate-coc-pulp-bomadness-summ .inlinerollresult.fullfail, .sheet-rolltemplate-coc-pulp-bomadness-rt .inlinerollresult.fullfail, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.fullfail, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.fullfail, .sheet-rolltemplate-coc-attack .inlinerollresult.fullfail, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.fullfail, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.fullfail, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.fullfail, .sheet-rolltemplate-coc-minionattack .inlinerollresult.fullfail, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.fullfail, .sheet-rolltemplate-coc .inlinerollresult.fullfail, .sheet-rolltemplate-coc-1 .inlinerollresult.fullfail, .sheet-rolltemplate-coc-attack-1 .inlinerollresult.fullfail,
-.sheet-rolltemplate-coc-bonus .inlinerollresult.importantroll, .sheet-rolltemplate-coc-default .inlinerollresult.importantroll, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.importantroll, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.importantroll, .sheet-rolltemplate-coc-pulp-bomadness-summ .inlinerollresult.importantroll, .sheet-rolltemplate-coc-pulp-bomadness-rt .inlinerollresult.importantroll, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.importantroll, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.importantroll, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.importantroll, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.importantroll, .sheet-rolltemplate-coc-minionattack .inlinerollresult.importantroll, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.importantroll .sheet-rolltemplate-coc .inlinerollresult.importantroll, .sheet-rolltemplate-coc-1 .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack-1 .inlinerollresult.importantroll {
+.sheet-rolltemplate-coc-bonus .inlinerollresult.importantroll, .sheet-rolltemplate-coc-default .inlinerollresult.importantroll, .sheet-rolltemplate-coc-bomadness-summ .inlinerollresult.importantroll, .sheet-rolltemplate-coc-bomadness-rt .inlinerollresult.importantroll, .sheet-rolltemplate-coc-pulp-bomadness-summ .inlinerollresult.importantroll, .sheet-rolltemplate-coc-pulp-bomadness-rt .inlinerollresult.importantroll, .sheet-rolltemplate-coc-dice-roll .inlinerollresult.importantroll, .sheet-rolltemplate-coc-body-hit-loc .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack-bonus .inlinerollresult.importantroll, .sheet-rolltemplate-coc-spell-roll .inlinerollresult.importantroll, .sheet-rolltemplate-coc-defence-simple .inlinerollresult.importantroll, .sheet-rolltemplate-coc-minionattack .inlinerollresult.importantroll, .sheet-rolltemplate-coc-vehicleattack .inlinerollresult.importantroll, .sheet-rolltemplate-coc .inlinerollresult.importantroll, .sheet-rolltemplate-coc-1 .inlinerollresult.importantroll, .sheet-rolltemplate-coc-attack-1 .inlinerollresult.importantroll {
     border: 2px solid black;
     background: #BEBEBE;
 }

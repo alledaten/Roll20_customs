@@ -152,8 +152,8 @@
                     <div>
                         <strong>행운</strong>
                         <input name="attr_luck" type="text" value="50"/>
-                        <button class="bonus-roll" name="roll_pow_check" type="roll" value="&{template:coc-bonus} {{name=행운}} {{success=[[@{luck}]]}} {{hard=[[floor(@{luck}/2)]]}} {{extreme=[[floor(@{luck}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
-                        <button class="default-roll" name="roll_pow_check" type="roll" value="&{template:coc-default} {{name=행운}} {{success=[[@{luck}]]}} {{hard=[[floor(@{luck}/2)]]}} {{extreme=[[floor(@{luck}/5)]]}} {{roll1=[[1d100]]}}"/>
+                        <button class="bonus-roll" name="roll_luck_check" type="roll" value="&{template:coc-bonus} {{name=행운}} {{success=[[@{luck}]]}} {{hard=[[floor(@{luck}/2)]]}} {{extreme=[[floor(@{luck}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
+                        <button class="default-roll" name="roll_luck_check" type="roll" value="&{template:coc-default} {{name=행운}} {{success=[[@{luck}]]}} {{hard=[[floor(@{luck}/2)]]}} {{extreme=[[floor(@{luck}/5)]]}} {{roll1=[[1d100]]}}"/>
                     </div>
                     <div>
                         <strong>이동</strong>
@@ -292,7 +292,7 @@
                             <input name="attr_persuade_checkbox" type="checkbox">
                             <span class="skill-label">설득(10%)</span>
                             <input class="skill-value" name="attr_persuade" type="text" value="10"/>
-                            <button class="bonus-roll" name="roll_persuade_check" type="roll" value="&{template:coc-bonus} {{name설득}} {{success=[[@{persuade}]]}} {{hard=[[floor(@{persuade}/2)]]}} {{extreme=[[floor(@{persuade}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
+                            <button class="bonus-roll" name="roll_persuade_check" type="roll" value="&{template:coc-bonus} {{name=설득}} {{success=[[@{persuade}]]}} {{hard=[[floor(@{persuade}/2)]]}} {{extreme=[[floor(@{persuade}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}"/>
                             <button class="default-roll" name="roll_persuade_check" type="roll" value="&{template:coc-default} {{name=설득}} {{success=[[@{persuade}]]}} {{hard=[[floor(@{persuade}/2)]]}} {{extreme=[[floor(@{persuade}/5)]]}} {{roll1=[[1d100]]}}"/>
                         </div>
                         <div class="skill-item">
@@ -493,8 +493,8 @@
                                 <input name="attr_checkbox" type="checkbox">
                                 <span class="skill-label"><input class="skill-label-input" name="attr_skillname" placeholder="스킬명" type="text" spellcheck="false"/></span>
                                 <input class="skill-value" name="attr_skill" type="text"/>
-                                <button class="bonus-roll" name="roll_skillname_check" type="roll" value="&{template:coc-bonus} {{name=@{skillname} Roll}} {{success=[[@{skill}]]}} {{hard=[[floor(@{skill}/2)]]}} {{extreme=[[floor(@{skill}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}" name="roll_skill_check"/>
-                                <button class="default-roll" name="roll_skillname_check" type="roll" value="&{template:coc-default} {{name=@{skillname} Roll}} {{success=[[@{skill}]]}} {{hard=[[floor(@{skill}/2)]]}} {{extreme=[[floor(@{skill}/5)]]}} {{roll1=[[1d100]]}}" name="roll_skill_check"/>
+                                <button class="bonus-roll" name="roll_skill_check" type="roll" value="&{template:coc-bonus} {{name=@{skillname} Roll}} {{success=[[@{skill}]]}} {{hard=[[floor(@{skill}/2)]]}} {{extreme=[[floor(@{skill}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}}" />
+                                <button class="default-roll" name="roll_skill_check" type="roll" value="&{template:coc-default} {{name=@{skillname} Roll}} {{success=[[@{skill}]]}} {{hard=[[floor(@{skill}/2)]]}} {{extreme=[[floor(@{skill}/5)]]}} {{roll1=[[1d100]]}}" />
                             </div>
                         </fieldset>
                     </div>
@@ -559,7 +559,7 @@
                             <input readonly type="text" value="비무장"/>
                         </div>
                         <div class="fight-dic">
-                            <button class="bonus-roll" name="roll_dodge_check" type="roll" value="&{template:coc-attack-bonus} {{name=비무장}} {{success=[[@{fighting_brawl}]]}} {{hard=[[floor(@{fighting_brawl}/2)]]}} {{extreme=[[floor(@{fighting_brawl}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}} {{damage=[[1d3+@{damage_bonus}]]}}"/>
+                            <button class="bonus-roll" name="roll_unarmed_check" type="roll" value="&{template:coc-attack-bonus} {{name=비무장}} {{success=[[@{fighting_brawl}]]}} {{hard=[[floor(@{fighting_brawl}/2)]]}} {{extreme=[[floor(@{fighting_brawl}/5)]]}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}} {{damage=[[1d3+@{damage_bonus}]]}}"/>
                             <button class="default-roll" name="roll_unarmed_check" type="roll" value="&{template:coc-attack} {{name=비무장}} {{success=[[@{fighting_brawl}]]}} {{hard=[[floor(@{fighting_brawl}/2)]]}} {{extreme=[[floor(@{fighting_brawl}/5)]]}} {{roll1=[[1d100]]}} {{damage=[[1d3+@{damage_bonus}]]}}"/>
                         </div>
                         <div class="fight-func">
@@ -588,7 +588,7 @@
                                 <input name="attr_weaponname" placeholder="무기명" type="text" value="" spellcheck="false"/>
                             </div>
                             <div class="fight-dic">
-                                <button class="bonus-roll" name="roll_dodge_check" type="roll" value="&{template:coc-attack-bonus} {{name=@{weaponname}}} {{success=[[@{weaponskill}]]}} {{hard=[[floor(@{weaponskill}/2)]]}} {{extreme=[[floor(@{weaponskill}/5)]]}} {{malf=@{weaponmalf}}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}} {{damage=[[@{weapondamage}@{weapondb}]]}}"/>
+                                <button class="bonus-roll" name="roll_weapon_skill_check" type="roll" value="&{template:coc-attack-bonus} {{name=@{weaponname}}} {{success=[[@{weaponskill}]]}} {{hard=[[floor(@{weaponskill}/2)]]}} {{extreme=[[floor(@{weaponskill}/5)]]}} {{malf=@{weaponmalf}}} {{roll1=[[1d100]]}} {{roll2=[[1d100]]}} {{roll3=[[1d100]]}} {{damage=[[@{weapondamage}@{weapondb}]]}}"/>
                                 <button class="default-roll" name="roll_weapon_skill_check" type="roll" value="&{template:coc-attack} {{name=@{weaponname}}} {{success=[[@{weaponskill}]]}} {{hard=[[floor(@{weaponskill}/2)]]}} {{extreme=[[floor(@{weaponskill}/5)]]}} {{malf=@{weaponmalf}}} {{roll1=[[1d100]]}} {{damage=[[@{weapondamage}@{weapondb}]]}}"/>
                             </div>
                             <div class="fight-func">
@@ -631,7 +631,7 @@
                     <div>
                         <input type="hidden" class="check-toggle-spell" name="attr_togglespells">
                         <div id="spell-section" class="toggle-section">
-                            <h4 class>주문</h4>
+                            <h4>주문</h4>
                             <fieldset class="repeating_spells">
                                 <div class="margin-top spell-header">
                                     <input class="expand-spell expand" name="attr_spell_expansion" type="checkbox" value="1"/>
@@ -960,7 +960,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <textarea name="attr_minion_desc" placeholder="메모" spellcheck="false"/>
+                            <textarea name="attr_minion_desc" placeholder="메모" spellcheck="false"></textarea>
                         </div>
                         <hr>
                     </fieldset>
@@ -987,12 +987,12 @@
                                 <div class="grid vehicle-skill">
                                     <input class="skill-label-input" type="text" name="attr_operatorskillname1" placeholder="조종사의 조종기능" spellcheck="false"/>
                                     <input class="skill-label-input" type="text" name="attr_operatorskill1" placeholder="수치" spellcheck="false"/>
-                                    <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{vehicle_name} @{operatorskillname1}판정}} {{success=[[@{operatorskill1}]]}} {{hard=[[floor(@{operatorskill1}/2)]]}} {{extreme=[[floor(@{operatorskill1}/5)]]}} {{roll1=[[1d100]]}}" name="roll_operatorskill_check2"/>
+                                    <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{vehicle_name} @{operatorskillname1}판정}} {{success=[[@{operatorskill1}]]}} {{hard=[[floor(@{operatorskill1}/2)]]}} {{extreme=[[floor(@{operatorskill1}/5)]]}} {{roll1=[[1d100]]}}" name="roll_operatorskill_check1"/>
                                 </div>
                                 <div class="grid vehicle-skill">
                                     <input class="skill-label-input" type="text" name="attr_operatorskillname2" placeholder="기능" spellcheck="false"/>
                                     <input class="skill-label-input" type="text" name="attr_operatorskill2" placeholder="수치" spellcheck="false"/>
-                                    <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{vehicle_name} @{operatorskillname2}판정}} {{success=[[@{operatorskill2}]]}} {{hard=[[floor(@{operatorskill2}/2)]]}} {{extreme=[[floor(@{operatorskill2}/5)]]}} {{roll1=[[1d100]]}}" name="roll_operatorskill_check1"/>
+                                    <button class="default-roll" type="roll" value="&{template:coc-default} {{name=@{vehicle_name} @{operatorskillname2}판정}} {{success=[[@{operatorskill2}]]}} {{hard=[[floor(@{operatorskill2}/2)]]}} {{extreme=[[floor(@{operatorskill2}/5)]]}} {{roll1=[[1d100]]}}" name="roll_operatorskill_check2"/>
                                 </div>
                                 <div class="grid vehicle-skill">
                                     <input class="skill-label-input" type="text" name="attr_vehicleweaponname" placeholder="탑재 무기명" spellcheck="false"/>
@@ -1034,7 +1034,7 @@
             <td class="template_label">굴림:</td>
             <td class="template_value">{{roll1}}, {{roll2}}, {{roll3}}</td>
         </tr>
-        <tr style="background:#fff9eb;">
+        <tr style="background:#fff8db;">
             <td class="template_label">+2:</td>
             <!-- Is roll2 less than roll1 -->
             {{#rollLess() roll2 roll1}}
@@ -1496,7 +1496,7 @@
             {{/rollTotal() roll1 roll3}}
             {{/rollTotal() roll1 roll2}}
         </tr>
-        <tr style="background:#fff3d1;">
+        <tr style="background:#fff1b8;">
             <td class="template_label">+1:</td>
             <!-- Is roll2 lower than roll1 -->
             {{#rollLess() roll2 roll1}}
@@ -1649,7 +1649,7 @@
             {{/rollGreater() roll1 success}}
             {{/rollTotal() roll1 roll2}}
         </tr>
-        <tr style="background:#ffeeab;">
+        <tr style="background:#ffeb94;">
             <td class="template_label">&nbsp;&nbsp;0:</td>
             <!-- 01 is always 대성공 -->
             {{#rollTotal() roll1 1}}
@@ -1699,7 +1699,7 @@
             {{/rollLess() success 50}}
             {{/rollGreater() roll1 success}}
         </tr>
-        <tr style="background:#fff080;">
+        <tr style="background:#ffe471;">
             <td class="template_label">-1:</td>
             <!-- Is roll2 greater than roll1 -->
             {{#rollGreater() roll2 roll1}}
@@ -2377,7 +2377,6 @@
                 {{/rollLess() roll1 96}}
                 {{/rollLess() success 50}}
                 {{/rollGreater() roll1 success}}
-                </td>
             </tr>
         </table>
     </div>
@@ -2475,29 +2474,36 @@
             <td class="template_value">탐사자에게 새로운 공포증이 생깁니다. 룰북에 있는 공포증의 예를 참고해 1D100으로 정하거나 수호자가 적절한 것을 고릅니다. 탐사자는 새로운
                 공포의 대상을 피하기 위해 온갖 조치를 다 취한 상태로 1D10시간 후에 정신을 차립니다.
             </td>
-            <tr>
-                <td class="template_value">
-                    <b>공포증 번호:</b>
-                    <span>{{tables}}</span>
-                </td>
-            </tr>
             {{/rollTotal() roll1 9}}
             <!--   -->
             {{#rollTotal() roll1 10}}
             <td class="template_value">탐사자에게 새로운 집착증이 생깁니다. 룰북에 있는 집착증의 예를 참고해 1D100으로 정하거나 수호자가 적절한 것을 고릅니다.이 발작이 지속되는
                 동안, 탐사자는 새로운 집착증에 완전히 빠집니다. 다른 사람이 보기에도 명확하게 드러나는지는 수호자와 플레이어가 결정합니다.
             </td>
-            <tr>
-                <td class="template_value">
-                    <b>집착증 번호:</b>
-                    <span>{{tables}}</span>
-                </td>
-            </tr>
             {{/rollTotal() roll1 10}}
             <!--   -->
         </tr>
+        <!--   -->
+        {{#rollTotal() roll1 9}}
         <tr>
-            <td class="template_value"> {{rounds}} <b>라운드 동안.</b></td>
+            <td class="template_value">
+                <b>공포증 번호:</b>
+                <span>{{tables}}</span>
+            </td>
+        </tr>
+        {{/rollTotal() roll1 9}}
+        <!--   -->
+        {{#rollTotal() roll1 10}}
+        <tr>
+            <td class="template_value">
+                <b>집착증 번호:</b>
+                <span>{{tables}}</span>
+            </td>
+        </tr>
+        {{/rollTotal() roll1 10}}
+        <!--   -->
+        <tr>
+            <td class="template_value"> {{hours}} <b>시간 동안.</b></td>
         </tr>
         <tr>
             <td class="template_value">
@@ -2590,26 +2596,33 @@
             {{#rollTotal() roll1 9}}
             <td class="template_value">새로운 공포증이 생깁니다. 룰북에 있는 공포증의 예를 참고해 1D100으로 정하거나 수호자가 적절한 것을 고릅니다. 공포의 대상이 자리에 없어도 그 모습을 상상하고 공포에 질립니다.
             </td>
-            <tr>
-                <td class="template_value">
-                    <b>공포증 번호:</b>
-                    <span>{{tables}}</span>
-                </td>
-            </tr>
             {{/rollTotal() roll1 9}}
             <!--   -->
             {{#rollTotal() roll1 10}}
             <td class="template_value">새로운 집착증이 생깁니다. 룰북에 있는 집착증의 예를 참고해 1D100으로 정하거나 수호자가 적절한 것을 고릅니다. 탐사자는 새로운 집착증에 몰입합니다.
             </td>
-            <tr>
-                <td class="template_value">
-                    <b>집착증 번호:</b>
-                    <span>{{tables}}</span>
-                </td>
-            </tr>
             {{/rollTotal() roll1 10}}
             <!--   -->
         </tr>
+        <!--   -->
+        {{#rollTotal() roll1 9}}
+        <tr>
+            <td class="template_value">
+                <b>공포증 번호:</b>
+                <span>{{tables}}</span>
+            </td>
+        </tr>
+        {{/rollTotal() roll1 9}}
+        <!--   -->
+        {{#rollTotal() roll1 10}}
+        <tr>
+            <td class="template_value">
+                <b>집착증 번호:</b>
+                <span>{{tables}}</span>
+            </td>
+        </tr>
+        {{/rollTotal() roll1 10}}
+        <!--   -->
         <tr>
             <td class="template_value"> {{rounds}} <b>라운드 동안.</b></td>
         </tr>
@@ -4388,7 +4401,7 @@
             <td class="template_label">굴림:</td>
             <td class="template_value">{{roll1}}, {{roll2}}, {{roll3}}</td>
         </tr>
-        <tr style="background:#fff9eb;">
+        <tr style="background:#fff8db;">
             <td class="template_label">+2:</td>
             <!-- Is roll2 less than roll1 -->
             {{#rollLess() roll2 roll1}}
@@ -4850,7 +4863,7 @@
             {{/rollTotal() roll1 roll3}}
             {{/rollTotal() roll1 roll2}}
         </tr>
-        <tr style="background:#fff3d1;">
+        <tr style="background:#fff1b8;">
             <td class="template_label">+1:</td>
             <!-- Is roll2 lower than roll1 -->
             {{#rollLess() roll2 roll1}}
@@ -5003,7 +5016,7 @@
             {{/rollGreater() roll1 success}}
             {{/rollTotal() roll1 roll2}}
         </tr>
-        <tr style="background:#ffeeab;">
+        <tr style="background:#ffeb94;">
             <td class="template_label">&nbsp;&nbsp;0:</td>
             <!-- 01 is always 대성공 -->
             {{#rollTotal() roll1 1}}
@@ -5053,7 +5066,7 @@
             {{/rollLess() success 50}}
             {{/rollGreater() roll1 success}}
         </tr>
-        <tr style="background:#fff080;">
+        <tr style="background:#ffe471;">
             <td class="template_label">-1:</td>
             <!-- Is roll2 greater than roll1 -->
             {{#rollGreater() roll2 roll1}}
@@ -7191,7 +7204,6 @@
                 {{/rollLess() roll1 96}}
                 {{/rollLess() success 50}}
                 {{/rollGreater() roll1 success}}
-                </td>
             </tr>
         </table>
     </div>
